@@ -20,6 +20,8 @@ http://this-badge-svc-host.com/repos/{owner}/{repository}/badge.svg
 
 Checkout the repository's XXXX badge and make a judgement.
 
+Click the badge and come through to our site for some more info about the repository and how we have rated it.
+
 Do you want to use a repository that has not had any commits in 2 years? Maybe. Depending on the repo and use case but maybe not.
 
 #### How we work out if the project is maintained
