@@ -5,11 +5,9 @@ Dir.glob('./app/{controllers,services,models,lib}/*.rb').each { |file| require f
 
 module HazCommitz
   class App < Sinatra::Application
-    #enable :sessions
 
     configure :production do
-      set :raise_errors, false
-      set :show_exceptions, false
+      # ...
     end
 
     configure :development do

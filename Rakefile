@@ -17,7 +17,7 @@ task :server do |t, args|
     require './app'
     require './app/haz_commitz'
 
-    HazCommitz.github_token = ENV['GITHUB_TOKEN'] || nil
+    HazCommitz.github_token = ENV['GITHUB_TOKEN'] || ""
     HazCommitz::App.run!
     
 end
