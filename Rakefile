@@ -4,9 +4,7 @@ begin
     require 'rspec/core/rake_task'
 
     desc "Run all specs in spec directory (excluding plugin specs)"
-    RSpec::Core::RakeTask.new(:spec) do |t|
-        RSpec::Core::RakeTask.new(:spec)
-    end
+    RSpec::Core::RakeTask.new(:spec)
 rescue LoadError
 end
 
