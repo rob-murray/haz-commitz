@@ -1,4 +1,5 @@
 require "date"
+require_relative "repo_rater"
 
 module HazCommitz
     class TimeBasedRepoRater < RepoRater
