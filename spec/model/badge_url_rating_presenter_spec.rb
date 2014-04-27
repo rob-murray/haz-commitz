@@ -87,7 +87,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(2) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&gt;%201%20year-orange.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg")
         end
 
     end
