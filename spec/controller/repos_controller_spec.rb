@@ -211,6 +211,22 @@ describe HazCommitz::ReposController do
 
     end
 
+    context "given a get request to add a repository" do
+
+        before(:each) do
+            get("/repos/new")
+        end
+
+        it "should return valid response" do
+            expect(last_response).to be_ok
+        end
+
+        it "should render add view" do
+            expect(last_response.body).to have_selector("div#new")
+        end
+
+    end
+
     context "given a post request for new repository" do
 
         context "given a request in valid format" do
@@ -254,7 +270,7 @@ describe HazCommitz::ReposController do
             it "should redirect to add view" do
                 follow_redirect!
 
-                expect(last_request.url).to match('/add')
+                expect(last_request.url).to match('/repos/new')
             end
 
             it "should display flash message" do

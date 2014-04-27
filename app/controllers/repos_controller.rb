@@ -20,12 +20,16 @@ module HazCommitz
             redirect to('/')
         end
 
+        get '/repos/new' do
+            erb :new
+        end
+
         post '/repos/new' do
             repo_path = params['repo_path']
 
             if repo_path.nil? || repo_path.split('/').size != 2
                 flash.next[:error] = "Invalid repository format"
-                redirect to("/add")
+                redirect to("/repos/new")
             else
                 redirect to("/repos/#{repo_path}")
             end
