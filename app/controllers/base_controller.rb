@@ -19,6 +19,10 @@ module HazCommitz
             def render_partial(name, locals = {})
                 erb "partials/_#{name}".to_sym, layout: false, locals: locals
             end
+
+            def base_url
+                @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+            end
         end
 
         private

@@ -46,7 +46,11 @@
 
         <div class="col-md-6 col-md-offset-3">
 
+            <p>Add a badge to your README by copying one of the following snippets.</p> 
+
             <img title="Haz Commitz badge for <%= repo.path %>" src="<%= request.path_info %>/badge.svg" />
+
+            <%= render_partial :badge_link_templates, {repo_path: repo.path} %>
 
         </div>
 

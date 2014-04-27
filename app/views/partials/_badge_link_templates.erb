@@ -1,0 +1,22 @@
+<div id="badge-link-grp">
+    <div class="badge-link">
+        <h4>Markdown</h4>
+        <form role="form">
+            <textarea class="form-control" rows="2" readonly>[![Haz Commitz Status](<%= base_url %>/repos/<%= repo_path %>/badge.svg)](<%= base_url %>/repos/<%= repo_path %>)</textarea>
+        </form>
+    </div>
+
+    <div class="badge-link">
+        <h4>RDOC</h4>
+        <form role="form">
+            <textarea class="form-control" rows="2" readonly>{<img src="<%= base_url %>/repos/<%= repo_path %>/badge.svg" alt="Haz Commitz Status" />}[<%= base_url %>/repos/<%= repo_path %>]</textarea>
+        </form>
+    </div>
+
+    <div class="badge-link">
+        <h4>HTML</h4>
+        <form role="form">
+            <textarea class="form-control" rows="2" readonly><a href="<%= base_url %>/repos/<%= repo_path %>"><img src="<%= base_url %>/repos/<%= repo_path %>/badge.svg" /></a></textarea>
+        </form>
+    </div>
+</div>
