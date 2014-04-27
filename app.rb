@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/base'
+require 'sinatra/content_for'
 
 Dir.glob('./app/{controllers,services,models,lib}/*.rb').each { |file| require file }
 
@@ -17,10 +18,5 @@ module HazCommitz
     
     use HazCommitz::RootController
     use HazCommitz::ReposController
-
-    helpers do
-      include Rack::Utils
-      alias_method :h, :escape_html
-    end
   end
 end

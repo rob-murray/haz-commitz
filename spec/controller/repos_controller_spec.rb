@@ -17,7 +17,7 @@ describe HazCommitz::ReposController do
             follow_redirect!
 
             expect(last_response).to be_ok
-            expect(last_request.url).to match(//)
+            expect(last_request.url).to match('/')
         end
 
     end
@@ -52,7 +52,7 @@ describe HazCommitz::ReposController do
             end
 
             it "should render repo view" do
-                expect(last_response.body).to have_selector("body#repo")
+                expect(last_response.body).to have_selector("div#repo")
             end
 
             it "should display repo owner and name" do

@@ -14,7 +14,7 @@ describe HazCommitz::RootController do
         end
 
         it "should render root view" do
-            expect(last_response.body).to have_selector("body#root")
+            expect(last_response.body).to have_selector("div#root")
         end
 
     end
