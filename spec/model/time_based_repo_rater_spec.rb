@@ -31,11 +31,41 @@ describe HazCommitz::TimeBasedRepoRater do
 
         end
 
+        context "repo with invalid date" do
+
+            let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", nil) }
+            let(:repo) do
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "invalid-repo")
+                repo.latest_commit = commit
+                repo
+            end
+
+            it "should rate minimum value" do
+                expect(rater.rate(repo)).to eq(0)
+            end
+
+        end
+
+        context "repo with commit within 1 day" do
+
+            let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", Time.now) }
+            let(:repo) do
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "repo-name")
+                repo.latest_commit = commit
+                repo
+            end
+
+            it "should rate maximum value" do
+                expect(rater.rate(repo)).to eq(10)
+            end
+
+        end
+
         context "repo with commit within 1 week" do
 
             let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", time_days_ago(7)) }
             let(:repo) do
-                repo = HazCommitz::GithubRepository.new("joe-bloggs", "invalid-repo")
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "repo-name")
                 repo.latest_commit = commit
                 repo
             end
@@ -50,7 +80,7 @@ describe HazCommitz::TimeBasedRepoRater do
 
             let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", time_days_ago(30)) }
             let(:repo) do
-                repo = HazCommitz::GithubRepository.new("joe-bloggs", "invalid-repo")
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "repo-name")
                 repo.latest_commit = commit
                 repo
             end
@@ -65,7 +95,7 @@ describe HazCommitz::TimeBasedRepoRater do
 
             let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", time_months_ago(3)) }
             let(:repo) do
-                repo = HazCommitz::GithubRepository.new("joe-bloggs", "invalid-repo")
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "repo-name")
                 repo.latest_commit = commit
                 repo
             end
@@ -80,7 +110,7 @@ describe HazCommitz::TimeBasedRepoRater do
 
             let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", time_months_ago(6)) }
             let(:repo) do
-                repo = HazCommitz::GithubRepository.new("joe-bloggs", "invalid-repo")
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "repo-name")
                 repo.latest_commit = commit
                 repo
             end
@@ -95,7 +125,7 @@ describe HazCommitz::TimeBasedRepoRater do
 
             let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", time_months_ago(12)) }
             let(:repo) do
-                repo = HazCommitz::GithubRepository.new("joe-bloggs", "invalid-repo")
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "repo-name")
                 repo.latest_commit = commit
                 repo
             end
@@ -110,7 +140,7 @@ describe HazCommitz::TimeBasedRepoRater do
 
             let(:commit) { HazCommitz::Commit.new("foo", "joe bloggs", time_months_ago(13)) }
             let(:repo) do
-                repo = HazCommitz::GithubRepository.new("joe-bloggs", "invalid-repo")
+                repo = HazCommitz::GithubRepository.new("joe-bloggs", "repo-name")
                 repo.latest_commit = commit
                 repo
             end
