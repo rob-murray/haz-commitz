@@ -1,14 +1,17 @@
-require "sinatra"
-require "json"
+require 'sinatra'
+require 'sinatra/flash'
 
 module HazCommitz
     class BaseController < Sinatra::Base
         helpers Sinatra::ContentFor
+        register Sinatra::Flash
 
         configure do
             set :views, 'app/views'
             set :public_folder, 'app/public'
             set :show_exceptions, false
+
+            enable :sessions
         end
 
         helpers do

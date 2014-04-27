@@ -211,4 +211,60 @@ describe HazCommitz::ReposController do
 
     end
 
+    context "given a post request for new repository" do
+
+        context "given a request in valid format" do
+
+            before(:each) do
+                HazCommitz::RepositoryService.any_instance.stubs(:repo_with_last_commit).returns(repo)
+
+                repo.stubs(:latest_commit).returns(commit)
+
+                post '/repos/new', {"repo_path"=>"name/repo"}
+            end
+
+            let(:repo) do
+                HazCommitz::GithubRepository.new('owner_name', 'repo_name')
+            end
+
+            let(:commit) do
+                HazCommitz::Commit.new("sha-12345", "joe bloggs", time_days_ago(7), "i fixed stuff")
+            end
+
+            it "should return redirect" do
+                expect(last_response).to be_redirect
+            end
+
+            it "should redirect to root view" do
+                follow_redirect!
+
+                # not interested if the response is valid, but need to stub repo service to avoid hitting api
+                expect(last_request.url).to match('/repos/name/repo')
+            end
+        end
+
+        context "given an invalid request" do
+
+            before(:each) { post '/repos/new', {"repo_path"=>"blah"} }
+
+            it "should redirect to /add" do
+                expect(last_response).to be_redirect
+            end
+
+            it "should redirect to add view" do
+                follow_redirect!
+
+                expect(last_request.url).to match('/add')
+            end
+
+            it "should display flash message" do
+                follow_redirect!
+
+                expect(last_response.body).to contain(/Invalid repository format/)
+            end
+
+        end
+
+    end
+
 end

@@ -20,6 +20,17 @@ module HazCommitz
             redirect to('/')
         end
 
+        post '/repos/new' do
+            repo_path = params['repo_path']
+
+            if repo_path.nil? || repo_path.split('/').size != 2
+                flash.next[:error] = "Invalid repository format"
+                redirect to("/add")
+            else
+                redirect to("/repos/#{repo_path}")
+            end
+        end
+
         get '/repos/:owner/:repo/?', :provides => ['html'] do |owner, repo|
             repo = fetch_and_rate_repo(owner, repo)
 

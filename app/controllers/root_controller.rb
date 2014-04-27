@@ -6,6 +6,10 @@ module HazCommitz
         get '/' do
             erb :root
         end
+
+        get '/add' do
+            erb :add
+        end
         
     end
 end

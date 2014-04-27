@@ -14,6 +14,7 @@ end
 gem "rake", "~> 10.1"
 gem "sinatra", "~> 1.4"
 gem "sinatra-contrib", "~> 1.4"
+gem "sinatra-flash", "~> 0.3"
 
 gem "octokit", "~> 3.1"
 gem "faraday-http-cache"
