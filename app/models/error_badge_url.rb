@@ -1,3 +1,5 @@
+require_relative 'badge_url_rating_presenter'
+
 module HazCommitz
     class ErrorBadgeUrl < BadgeUrlRatingPresenter
 
