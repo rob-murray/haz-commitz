@@ -5,15 +5,15 @@
 [![Coverage Status](https://coveralls.io/repos/rob-murray/haz-commitz/badge.png)](https://coveralls.io/r/rob-murray/haz-commitz)
 [![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz/badge.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
 
-### A Github badge service conveying how recently a project has been worked on - Proof of concept at the moment!
+### A GitHub badge service conveying how recently a project has been worked on - Proof of concept at the moment!
 
-Frustrated at having to check whether a github repository has had any commits recently, is it still maintained and can you use it? If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained.
+Frustrated at having to check whether a GitHub repository has had any commits recently, is it still maintained and can you use it? If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained.
 
-Here it is! [Haz Commitz](http://haz-commitz.herokuapp.com)
+Here it is; [Haz Commitz](http://haz-commitz.herokuapp.com)
 
-### Usage
+## Usage
 
-#### Project owner
+### Project owner
 
 Simply just add a `Haz Commitz` badge to your repository README, we take care of the rest by checking your project and serving a badge based on a rating.
 
@@ -29,21 +29,21 @@ Simply just add a `Haz Commitz` badge to your repository README, we take care of
 {<img src="http://haz-commitz.herokuapp.com/repos/{owner}/{repository}/badge.svg" alt="Haz Commitz Status" />}[http://haz-commitz.herokuapp.com/repos/{owner}/{repository}]
 ```
 
-Access your repository stats via a url like `http://haz-commitz.herokuapp.com/repos/{owner}/{repository}`.
+Access your repository stats via a URL like `http://haz-commitz.herokuapp.com/repos/{owner}/{repository}`.
 
-#### Project user
+### Project user
 
-Checkout the repository's `Haz Commitz` badge and make a judgement.
+Checkout the repository's `Haz Commitz` badge and make a judgment.
 
 Click the badge and come through to our site for some more info about the repository and how we have rated it.
 
 Do you want to use a repository that has not had any commits in 2 years? Maybe. Depending on the repo and use case but maybe not.
 
-#### How we work out if the project is maintained
+### How we work out if the project is maintained
 
 In proof of concept version we simply ask GitHub API when the last commit to the master branch was and then give the repository an un-scientific rating based on when this date.
 
-### Build, Test, & Run
+## Build, Test, & Run
 
 Project runs on Sinatra and Octokit gems currently.
 
@@ -66,11 +66,11 @@ $ heroku config:set GITHUB_TOKEN=<API TOKEN HERE>
 $ git push heroku master
 ```
 
-### Contributions
+## Contributions
 
 Please use the GitHub pull-request mechanism to submit contributions.
 
-### License
+## License
 
 This project is available for use under the MIT software license.
 See LICENSE
