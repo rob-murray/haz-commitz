@@ -7,7 +7,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(10) }
 
         it "should return a url for best rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-1%20week-brightgreen.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20week-brightgreen.svg")
         end
 
     end
@@ -17,7 +17,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(9) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-1%20months-brightgreen.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg")
         end
 
     end
@@ -27,7 +27,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(8) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-1%20months-brightgreen.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg")
         end
 
     end
@@ -37,7 +37,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(7) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-3%20months-yellowgreen.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg")
         end
 
     end
@@ -47,7 +47,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(6) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-3%20months-yellowgreen.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg")
         end
 
     end
@@ -57,7 +57,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(5) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-6%20months-yellow.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg")
         end
 
     end
@@ -67,7 +67,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(4) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-6%20months-yellow.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg")
         end
 
     end
@@ -77,7 +77,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(3) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-1%20year-orange.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg")
         end
 
     end
@@ -87,7 +87,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(2) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-1%20year-orange.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&gt;%201%20year-orange.svg")
         end
 
     end
@@ -97,7 +97,7 @@ describe HazCommitz::BadgeUrlRatingPresenter do
         subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(1) }
 
         it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-1%20year-red.svg")
+            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&gt;%201%20year-red.svg")
         end
 
     end

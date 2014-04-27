@@ -5,9 +5,9 @@
 <div class="container" id="repo">
     <h3>Repository</h3>
     <div class="well well-lg">
-        <h4><%= repo.owner %> / <%= repo.name %></h4>
+        <h4><%= repo.owner %> / <%= repo.name %> <a href="https://github.com/<%= repo.path %>"><img src="/github.png" /></a></h4>
 
-        <p>Has a rating of: <span id="rating" class="badge"><%= repo.rating %></span></p>
+        <p>Haz Commitz rating: <span id="rating" class="badge"><%= repo.rating %></span></p>
     </div>
 
     <h4>Last commit</h4>

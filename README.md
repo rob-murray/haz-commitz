@@ -9,7 +9,7 @@
 
 Frustrated at having to check whether a github repository has had any commits recently, is it still maintained and can you use it? If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained.
 
-[Haz Commitz](http://haz-commitz.herokuapp.com)
+Here it is! [Haz Commitz](http://haz-commitz.herokuapp.com)
 
 ### Usage
 
