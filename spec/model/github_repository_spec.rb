@@ -49,4 +49,50 @@ describe HazCommitz::GithubRepository do
 
     end
 
+    describe ".new_from_path" do
+
+        context "when param is nil" do
+
+            it "should return nil" do
+                expect(HazCommitz::GithubRepository.new_from_path(nil)).to be_nil
+            end
+
+        end
+
+        context "when param is has path components" do
+
+            subject(:repo) { HazCommitz::GithubRepository.new_from_path("user-name/repo-name") }
+
+            it "should return instance" do
+                expect(repo).not_to be_nil
+            end
+
+            it "should assign user-name" do
+                expect(repo.owner).to eq("user-name")
+            end
+
+            it "should assign repository name" do
+                expect(repo.name).to eq("repo-name")
+            end
+
+        end
+
+        context "when param has not enough path components" do
+
+            it "should return nil" do
+                expect(HazCommitz::GithubRepository.new_from_path("foo")).to be_nil
+            end
+
+        end
+
+        context "when param has too many path components" do
+
+            it "should return nil" do
+                expect(HazCommitz::GithubRepository.new_from_path("foo/bar/foo")).to be_nil
+            end
+
+        end
+
+    end
+
 end

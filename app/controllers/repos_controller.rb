@@ -25,13 +25,13 @@ module HazCommitz
         end
 
         post '/repos/new' do
-            repo_path = params['repo_path']
+            repo = repo_from_path(params['repo_path'])
 
-            if repo_path.nil? || repo_path.split('/').size != 2
+            if repo.nil?
                 flash.next[:error] = "Invalid repository format"
                 redirect to("/repos/new")
             else
-                redirect to("/repos/#{repo_path}")
+                redirect to("/repos/#{repo.path}")
             end
         end
 
@@ -75,6 +75,10 @@ module HazCommitz
 
         def badge(repo_rating)
             BadgeUrlRatingPresenter.new(repo_rating)
+        end
+
+        def repo_from_path(repo_path)
+            GithubRepository.new_from_path(repo_path)
         end
         
     end
