@@ -3,14 +3,14 @@ begin
     require 'rspec/core'
     require 'rspec/core/rake_task'
 
-    desc "Run all specs in spec directory (excluding plugin specs)"
+    desc 'Run all specs in spec directory (excluding plugin specs)'
     RSpec::Core::RakeTask.new(:spec)
 
     task :default => :spec
 rescue LoadError
 end
 
-desc "Run locally"
+desc 'Run locally'
 task :server do |t, args|
     ENV['RACK_ENV'] = 'development'
 
@@ -21,7 +21,7 @@ task :server do |t, args|
     require './app'
     require './app/haz_commitz'
 
-    HazCommitz.github_token = ENV['GITHUB_TOKEN'] || ""
+    HazCommitz.github_token = ENV['GITHUB_TOKEN'] || ''
     HazCommitz::App.run!
-    
 end
+task :s => :server
