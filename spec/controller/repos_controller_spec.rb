@@ -17,7 +17,6 @@ describe HazCommitz::ReposController do
             expect(last_response).to be_ok
             expect(last_request.url).to match('/')
         end
-
     end
 
     context "given a request with repo owner and name" do
@@ -82,9 +81,7 @@ describe HazCommitz::ReposController do
                     it "should not display any message or indication of" do
                         expect(last_response.body).not_to contain(/Message/)
                     end
-
                 end
-
             end
 
             context "to badge url" do
@@ -114,9 +111,7 @@ describe HazCommitz::ReposController do
                 it "should set caching directive" do
                     expect(last_response['Cache-Control']).to eq('no-cache, no-store, must-revalidate')
                 end
-
             end
-
         end
 
         context "with a repo that does not exist" do
@@ -132,7 +127,6 @@ describe HazCommitz::ReposController do
                 it "should return not found status" do
                     expect(last_response.status).to eq(404)
                 end
-
             end
 
             context "to badge url" do
@@ -143,8 +137,8 @@ describe HazCommitz::ReposController do
                     expect(last_response.status).to eq(404)
                 end
 
+                it 'returns an error image'
             end
-
         end
 
         context "with a repo that is unauthorised" do
@@ -160,7 +154,6 @@ describe HazCommitz::ReposController do
                 it "should return unauthorised status" do
                     expect(last_response.status).to eq(401)
                 end
-
             end
 
             context "to badge url" do
@@ -171,8 +164,8 @@ describe HazCommitz::ReposController do
                     expect(last_response.status).to eq(401)
                 end
 
+                it 'returns an error image'
             end
-
         end
 
         context "when the GitHub API rate limit is exceeded" do
@@ -188,7 +181,6 @@ describe HazCommitz::ReposController do
                 it "should return service unavailble status" do
                     expect(last_response.status).to eq(503)
                 end
-
             end
 
             context "to badge url" do
@@ -199,10 +191,36 @@ describe HazCommitz::ReposController do
                     expect(last_response.status).to eq(503)
                 end
 
+								it 'returns an error image'
             end
-
         end
 
+        context "when an exception is thrown" do
+
+            before do
+                HazCommitz::RepositoryService.any_instance.stubs(:repo_with_last_commit).raises(StandardError.new('foo'))
+            end
+
+            context "to html url" do
+
+                before { get("/repos/owner_name/repo_name") }
+
+                it "should return service unavailble status" do
+                    expect(last_response.status).to eq(500)
+                end
+            end
+
+            context "to badge url" do
+
+                before { get("/repos/owner_name/repo_name/badge.svg") }
+
+                it "should return service unavailble status" do
+                    expect(last_response.status).to eq(500)
+                end
+
+								it 'returns an error image'
+            end
+        end
     end
 
     context "given a get request to add a repository" do
