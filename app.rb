@@ -11,11 +11,11 @@ module HazCommitz
       # ...
     end
 
-    configure :development do
+    configure :development, :test do
       set :raise_errors, false
       set :show_exceptions, false
     end
-    
+
     use HazCommitz::RootController
     use HazCommitz::ReposController
   end

@@ -191,7 +191,7 @@ describe HazCommitz::ReposController do
           expect(last_response.status).to eq(503)
         end
 
-				it 'returns an error image'
+            it 'returns an error image'
       end
     end
 
@@ -218,7 +218,7 @@ describe HazCommitz::ReposController do
           expect(last_response.status).to eq(500)
         end
 
-				it 'returns an error image'
+            it 'returns an error image'
       end
     end
   end

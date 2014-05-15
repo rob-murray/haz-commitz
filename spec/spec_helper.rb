@@ -3,7 +3,7 @@ require 'spork'
 require 'coveralls'
 
 # force the environment to 'test'
-ENV['RACK_ENV'] = 'test' 
+ENV['RACK_ENV'] = 'test'
 
 Coveralls.wear! # Code coverage
 
@@ -19,12 +19,12 @@ Spork.prefork do
   require 'rspec'
   require 'rack/test'
   require 'webrat'
-  
+
   # test environment stuff
-  set :environment, :test
-  set :run, false
-  set :raise_errors, true
-  set :logging, false
+  Sinatra::Base.set :environment, :test
+  Sinatra::Base.set :run, false
+  Sinatra::Base.set :raise_errors, false
+  Sinatra::Base.set :logging, false
 
   RSpec.configure do |config|
     config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -44,8 +44,6 @@ Spork.prefork do
   def app
     @app ||= HazCommitz::App
   end
-
-#
 end
 
 Spork.each_run do
