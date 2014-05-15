@@ -41,8 +41,6 @@ module HazCommitz
     get '/repos/:owner/:repo/?', provides: ['html'] do |owner, repo|
       repo = fetch_and_rate_repo(owner, repo)
 
-      raise 'foo!'
-
       erb :repo, locals: { repo: repo, badge: badge(repo.rating) }
     end
 
