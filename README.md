@@ -1,6 +1,6 @@
 ## Haz Commitz?!
 
-[![Build Status](https://travis-ci.org/rob-murray/haz-commitz.png?branch=master)](https://travis-ci.org/rob-murray/haz-commitz)
+[![Build Status](https://travis-ci.org/rob-murray/haz-commitz.svg?branch=master)](https://travis-ci.org/rob-murray/haz-commitz)
 [![Code Climate](https://codeclimate.com/github/rob-murray/haz-commitz.png)](https://codeclimate.com/github/rob-murray/haz-commitz)
 [![Coverage Status](https://coveralls.io/repos/rob-murray/haz-commitz/badge.png)](https://coveralls.io/r/rob-murray/haz-commitz)
 [![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz/badge.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
