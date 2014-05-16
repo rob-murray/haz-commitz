@@ -8,5 +8,4 @@ module DateHelper
   def time_months_ago(months)
     time_days_ago(months * DAYS_IN_MONTH)
   end
-  
 end

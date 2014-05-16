@@ -2,115 +2,114 @@ require 'spec_helper'
 
 describe HazCommitz::BadgeUrlRatingPresenter do
 
-    context "given a maximum rating" do
+  context 'given a maximum rating' do
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(10) }
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(10) }
 
-        it "should return a url for best rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20week-brightgreen.svg")
-        end
-
+    it 'should return a url for best rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20week-brightgreen.svg')
     end
 
-    context "given a rating of 9" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(9) }
+  context 'given a rating of 9' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(9) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg')
     end
 
-    context "given a rating of 8" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(8) }
+  context 'given a rating of 8' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(8) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg')
     end
 
-    context "given a rating of 7" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(7) }
+  context 'given a rating of 7' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(7) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg')
     end
 
-    context "given a rating of 6" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(6) }
+  context 'given a rating of 6' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(6) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg')
     end
 
-    context "given a rating of 5" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(5) }
+  context 'given a rating of 5' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(5) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg')
     end
 
-    context "given a rating of 4" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(4) }
+  context 'given a rating of 4' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(4) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg')
     end
 
-    context "given a rating of 3" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(3) }
+  context 'given a rating of 3' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(3) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg')
     end
 
-    context "given a rating of 2" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(2) }
+  context 'given a rating of 2' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(2) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg')
     end
 
-    context "given a rating of 1" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(1) }
+  context 'given a rating of 1' do
 
-        it "should return a url for rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-&gt;%201%20year-red.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(1) }
 
+    it 'should return a url for rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&gt;%201%20year-red.svg')
     end
 
-    context "given a minimum rating" do
+  end
 
-        subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(0) }
+  context 'given a minimum rating' do
 
-        it "should return a url for lowest rating" do
-            expect(badge_url.display).to eq("http://img.shields.io/badge/Haz%20Commitz-None-red.svg")
-        end
+    subject(:badge_url) { HazCommitz::BadgeUrlRatingPresenter.new(0) }
 
+    it 'should return a url for lowest rating' do
+      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-None-red.svg')
     end
 
+  end
 
 end
