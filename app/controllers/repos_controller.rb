@@ -3,20 +3,22 @@ require_relative 'base_controller'
 
 module HazCommitz
   class ReposController < BaseController
+    ERROR_IMAGE = 'error_badge.svg'
+
     error do
-      status 500, request.env['sinatra.error']
+      error_status(500, "An error occured: '#{request.env['sinatra.error']}'.")
     end
 
     error Octokit::NotFound do
-      halt 404, 'Github Repository not found.'
+      error_status(404, 'Github Repository not found.')
     end
 
     error Octokit::Unauthorized do
-      halt 401, 'Unauthorised to access Github Repository.'
+      error_status(401, 'Unauthorised to access Github Repository.')
     end
 
     error Octokit::TooManyRequests do
-      halt 503, 'Github API rate limited exceeded. Try again soon.'
+      error_status(503, 'Github API rate limited exceeded. Try again soon.')
     end
 
     get '/repos/?' do
@@ -56,6 +58,15 @@ module HazCommitz
     end
 
     private
+
+    def error_status(status, message = '')
+      if request.path_info.include?('badge')
+        file_path = File.join('app', 'public', ERROR_IMAGE)
+        send_file(file_path, status: status, disposition: :inline, filename: ERROR_IMAGE)
+      else
+        halt status, message
+      end
+    end
 
     def fetch_and_rate_repo(owner, repo_name)
       repo = repo_service.repo_with_last_commit(owner, repo_name)

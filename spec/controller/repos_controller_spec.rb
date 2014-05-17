@@ -164,7 +164,10 @@ describe HazCommitz::ReposController do
           expect(last_response.status).to eq(401)
         end
 
-        it 'returns an error image'
+        it 'returns an error image' do
+          # will treat this as an image test until that is actually fixed
+          expect(last_response.content_type).to include('image/svg+xml')
+        end
       end
     end
 
@@ -191,14 +194,17 @@ describe HazCommitz::ReposController do
           expect(last_response.status).to eq(503)
         end
 
-        it 'returns an error image'
+        it 'returns an error image' do
+          # will treat this as an image test until that is actually fixed
+          expect(last_response.content_type).to include('image/svg+xml')
+        end
       end
     end
 
     context 'when an exception is thrown' do
 
       before do
-        HazCommitz::RepositoryService.any_instance.stubs(:repo_with_last_commit).raises(StandardError)
+        HazCommitz::RepositoryService.any_instance.stubs(:repo_with_last_commit).raises(Exception)
       end
 
       context 'to html url' do
@@ -218,7 +224,10 @@ describe HazCommitz::ReposController do
           expect(last_response.status).to eq(500)
         end
 
-        it 'returns an error image'
+        it 'returns an error image' do
+          # will treat this as an image test until that is actually fixed
+          expect(last_response.content_type).to include('image/svg+xml')
+        end
       end
     end
   end
