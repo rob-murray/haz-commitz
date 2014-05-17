@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rb-fsevent' if `uname` =~ /Darwin/
   gem "coveralls", "~> 0.7", require: false
   gem 'mocha'
+  gem 'shoulda-matchers'
 end
 
 # Application specific
