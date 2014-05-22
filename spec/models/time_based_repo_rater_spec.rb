@@ -20,7 +20,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', 'invalid date') }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'invalid-repo')
+        repo = Repository.new('joe-bloggs', 'invalid-repo')
         repo.latest_commit = commit
         repo
       end
@@ -35,7 +35,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', nil) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'invalid-repo')
+        repo = Repository.new('joe-bloggs', 'invalid-repo')
         repo.latest_commit = commit
         repo
       end
@@ -50,7 +50,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', Time.now) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'repo-name')
+        repo = Repository.new('joe-bloggs', 'repo-name')
         repo.latest_commit = commit
         repo
       end
@@ -65,7 +65,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', time_days_ago(7)) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'repo-name')
+        repo = Repository.new('joe-bloggs', 'repo-name')
         repo.latest_commit = commit
         repo
       end
@@ -80,7 +80,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', time_days_ago(30)) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'repo-name')
+        repo = Repository.new('joe-bloggs', 'repo-name')
         repo.latest_commit = commit
         repo
       end
@@ -95,7 +95,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', time_months_ago(3)) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'repo-name')
+        repo = Repository.new('joe-bloggs', 'repo-name')
         repo.latest_commit = commit
         repo
       end
@@ -110,7 +110,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', time_months_ago(6)) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'repo-name')
+        repo = Repository.new('joe-bloggs', 'repo-name')
         repo.latest_commit = commit
         repo
       end
@@ -125,7 +125,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', time_months_ago(12)) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'repo-name')
+        repo = Repository.new('joe-bloggs', 'repo-name')
         repo.latest_commit = commit
         repo
       end
@@ -140,7 +140,7 @@ describe TimeBasedRepoRater do
 
       let(:commit) { Commit.new('foo', 'joe bloggs', time_months_ago(13)) }
       let(:repo) do
-        repo = GithubRepository.new('joe-bloggs', 'repo-name')
+        repo = Repository.new('joe-bloggs', 'repo-name')
         repo.latest_commit = commit
         repo
       end
