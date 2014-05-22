@@ -1,9 +1,14 @@
 
-class GithubRepository
+class Repository
+  include ActiveModel::Model
+
   attr_reader :owner, :name
   attr_accessor :latest_commit, :rating
 
-  def initialize(owner, repo_name)
+  validates :owner, presence: true
+  validates :name, presence: true
+
+  def initialize(owner = nil, repo_name = nil)
     @owner = owner
     @name = repo_name
 
@@ -22,7 +27,7 @@ class GithubRepository
     if repo_path.nil? || repo_path.split('/').size != 2
       nil
     else
-      GithubRepository.new(*repo_path.split('/'))
+      Repository.new(*repo_path.split('/'))
     end
   end
 end

@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe GithubRepository do
+describe Repository do
 
-  subject(:repo) { GithubRepository.new('user-name', 'repo-name') }
+  subject(:repo) { Repository.new('user-name', 'repo-name') }
 
-  describe 'creating' do
+  describe 'creating with params' do
 
     it 'should assign user-name' do
       expect(repo.owner).to eq('user-name')
@@ -16,6 +16,20 @@ describe GithubRepository do
 
     it 'should initialize with zero rating' do
       expect(repo.rating).to eq(0)
+    end
+
+    it 'should be valid' do
+      expect(repo).to be_valid
+    end
+
+  end
+
+  describe 'creating empty' do
+
+    subject(:repo) { Repository.new }
+
+    it 'should not be valid' do
+      expect(repo).not_to be_valid
     end
 
   end
@@ -54,14 +68,14 @@ describe GithubRepository do
     context 'when param is nil' do
 
       it 'should return nil' do
-        expect(GithubRepository.new_from_path(nil)).to be_nil
+        expect(Repository.new_from_path(nil)).to be_nil
       end
 
     end
 
     context 'when param is has path components' do
 
-      subject(:repo) { GithubRepository.new_from_path('user-name/repo-name') }
+      subject(:repo) { Repository.new_from_path('user-name/repo-name') }
 
       it 'should return instance' do
         expect(repo).not_to be_nil
@@ -80,7 +94,7 @@ describe GithubRepository do
     context 'when param has not enough path components' do
 
       it 'should return nil' do
-        expect(GithubRepository.new_from_path('foo')).to be_nil
+        expect(Repository.new_from_path('foo')).to be_nil
       end
 
     end
@@ -88,7 +102,7 @@ describe GithubRepository do
     context 'when param has too many path components' do
 
       it 'should return nil' do
-        expect(GithubRepository.new_from_path('foo/bar/foo')).to be_nil
+        expect(Repository.new_from_path('foo/bar/foo')).to be_nil
       end
 
     end
