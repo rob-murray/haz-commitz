@@ -1,25 +1,22 @@
+class RepositoryService
+  def initialize(github_api)
+    @github_api = github_api
+  end
 
-module HazCommitz
-  class RepositoryService
-    def initialize(github_api)
-      @github_api = github_api
-    end
+  def repo(owner, repo)
+    GithubRepository.new(owner, repo)
+  end
 
-    def repo(owner, repo)
-      GithubRepository.new(owner, repo)
-    end
+  def repo_with_last_commit(owner, repo)
+    repo = repo(owner, repo)
+    repo.latest_commit = commit_builder.latest_commit(repo.path)
 
-    def repo_with_last_commit(owner, repo)
-      repo = repo(owner, repo)
-      repo.latest_commit = commit_builder.latest_commit(repo.path)
+    repo
+  end
 
-      repo
-    end
+  private
 
-    private
-
-    def commit_builder
-      LatestCommitBuilder.new(@github_api)
-    end
+  def commit_builder
+    LatestCommitBuilder.new(@github_api)
   end
 end
