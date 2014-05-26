@@ -23,7 +23,7 @@ describe 'repository/show.html.erb' do
   end
 
   it 'displays repository rating' do
-    expect(rendered).to have_selector('span', text: "#{repo.rating}")
+    expect(rendered).to have_selector('span', text: repo.rating)
   end
 
   it 'should display last commit info' do
