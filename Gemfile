@@ -29,6 +29,7 @@ group :development, :test do
   gem "coveralls", "~> 0.7", require: false
   gem 'mocha'
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 # Application specific
