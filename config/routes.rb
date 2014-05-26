@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :repository, path: 'repos', except: [:update, :edit, :destroy], :constraints => { :id => /.*/ }
+  get '/repos/:user_id/:id', to: 'repository#show', as: :repository
+  resources :repository, path: 'repos', except: [:show, :update, :edit, :destroy]
   get 'root/index'
 
   root 'root#index'
