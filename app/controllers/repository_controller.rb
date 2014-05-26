@@ -15,9 +15,11 @@ class RepositoryController < ApplicationController
       format.html
       format.svg do
         badge = badge(@repo.rating)
+
         expires_now
-        fresh_when(@repo.latest_commit.sha)
-        render text: ImageProxy.fetch(badge.display)
+        if stale?(etag: @repo.latest_commit.sha)
+          render inline: ImageProxy.fetch(badge.display)
+        end
       end
     end
   end
@@ -56,7 +58,7 @@ class RepositoryController < ApplicationController
   end
 
   def something_went_wrong
-    render_error :internal_server_error, 'Ooops'
+    render_error :internal_server_error, 'Ooops. An error occured, sorry about that.'
   end
 
   def render_error(status, message = '')
@@ -64,7 +66,7 @@ class RepositoryController < ApplicationController
       f.html { render plain: message, status: status }
       f.svg do
         error_badge = File.join(Rails.public_path, 'error_badge.svg')
-        render text: File.read(error_badge), status: status
+        render file: error_badge, status: status
       end
     end
   end
