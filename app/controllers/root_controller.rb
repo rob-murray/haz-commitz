@@ -1,9 +1,4 @@
-require_relative 'base_controller'
-
-module HazCommitz
-  class RootController < BaseController
-    get '/' do
-      erb :root
-    end
+class RootController < ApplicationController
+  def index
   end
 end

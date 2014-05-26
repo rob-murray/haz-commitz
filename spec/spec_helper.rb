@@ -1,50 +1,40 @@
-require 'rubygems'
-require 'spork'
-require 'coveralls'
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rspec/rails'
+require 'rspec/autorun'
+require 'capybara/rspec'
+require 'capybara/rails'
 
-# force the environment to 'test'
-ENV['RACK_ENV'] = 'test'
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-Coveralls.wear! # Code coverage
+# Checks for pending migrations before tests are run.
+# If you are not using ActiveRecord, you can remove this line.
+ActiveRecord::Migration.maintain_test_schema!
 
-Dir.glob('./spec/support/{helpers}/*.rb').each { |file| require file }
+RSpec.configure do |config|
+  config.mock_with :mocha
 
-Spork.prefork do
-  require_relative '../app'
-  require_relative '../app/haz_commitz'
-  Dir.glob('./app/{controllers,services,models,lib}/*.rb').each { |file| require file }
+  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  require 'rubygems'
-  require 'sinatra'
-  require 'rspec'
-  require 'rack/test'
-  require 'webrat'
+  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # examples within a transaction, remove the following line or assign false
+  # instead of true.
+  config.use_transactional_fixtures = true
 
-  # test environment stuff
-  Sinatra::Base.set :environment, :test
-  Sinatra::Base.set :run, false
-  Sinatra::Base.set :raise_errors, false
-  Sinatra::Base.set :logging, false
+  # If true, the base class of anonymous controllers will be inferred
+  # automatically. This will be the default behavior in future versions of
+  # rspec-rails.
+  config.infer_base_class_for_anonymous_controllers = false
 
-  RSpec.configure do |config|
-    config.treat_symbols_as_metadata_keys_with_true_values = true
-    config.run_all_when_everything_filtered = true
-    config.filter_run :focus
-    config.mock_framework = :mocha
-    config.include DateHelper
-    config.include Rack::Test::Methods
+  # Run specs in random order to surface order dependencies. If you find an
+  # order dependency and want to debug it, you can fix the order by providing
+  # the seed, which is printed after each run.
+  #     --seed 1234
+  config.order = 'random'
 
-    # Run specs in random order to surface order dependencies. If you find an
-    # order dependency and want to debug it, you can fix the order by providing
-    # the seed, which is printed after each run.
-    #     --seed 1234
-    config.order = 'random'
-  end
-
-  def app
-    @app ||= HazCommitz::App
-  end
-end
-
-Spork.each_run do
+  config.include DateHelper
 end

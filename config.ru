@@ -1,9 +1,4 @@
-require 'rubygems'
-require 'bundler'
-Bundler.require(:default, ENV['RACK_ENV'].to_sym)
+# This file is used by Rack-based servers to start the application.
 
-require './app'
-require './app/haz_commitz'
-
-HazCommitz.github_token = ENV['GITHUB_TOKEN'] || ""
-run HazCommitz::App
+require ::File.expand_path('../config/environment',  __FILE__)
+run Rails.application

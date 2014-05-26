@@ -1,27 +1,6 @@
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-begin
-  require 'rspec/core'
-  require 'rspec/core/rake_task'
+require File.expand_path('../config/application', __FILE__)
 
-  desc 'Run all specs in spec directory (excluding plugin specs)'
-  RSpec::Core::RakeTask.new(:spec)
-
-  task default: :spec
-rescue LoadError
-end
-
-desc 'Run locally'
-task :server do |t, args|
-  ENV['RACK_ENV'] = 'development'
-
-  require 'rubygems'
-  require 'bundler'
-  Bundler.require(:default, ENV['RACK_ENV'].to_sym)
-
-  require './app'
-  require './app/haz_commitz'
-
-  HazCommitz.github_token = ENV['GITHUB_TOKEN'] || ''
-  HazCommitz::App.run!
-end
-task s: :server
+Rails.application.load_tasks

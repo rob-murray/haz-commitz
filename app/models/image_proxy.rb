@@ -1,9 +1,7 @@
 require 'open-uri'
 
-module HazCommitz
-  class ImageProxy
-    def self.fetch(url)
-      open(url).read
-    end
+class ImageProxy
+  def self.fetch(url)
+    open(url).read
   end
 end

@@ -1,0 +1,61 @@
+<% provide(:title, "#{@repo.path} rating &middot; Haz Commitz") %>
+
+<div class="container" id="repo">
+    <h3>Repository</h3>
+    <div class="well well-lg">
+        <h4><%= @repo.owner %> / <%= @repo.name %> <a href="https://github.com/<%= @repo.path %>"><%= image_tag('github.png') %></a></h4>
+
+        <p>Haz Commitz rating: <span id="rating" class="badge"><%= @repo.rating %></span></p>
+    </div>
+
+    <h4>Last commit</h4>
+    <div class="row">
+
+        <div class="col-md-6 col-md-offset-3">
+            <table class="table table-bordered">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <th>SHA</th>
+                        <td><%= @repo.latest_commit.sha %></td>
+                    </tr>
+                    <tr>
+                        <th>Author</th>
+                        <td><%= @repo.latest_commit.author_name %></td>
+                    </tr>
+                    <tr>
+                        <th>DateTime</th>
+                        <td><%= @repo.latest_commit.date %></td>
+                    </tr>
+<% unless @repo.latest_commit.message.empty? %>
+                    <tr>
+                        <th>Message</th>
+                        <td><%= h @repo.latest_commit.message %></td>
+                    </tr>
+<% end %>
+                </tbody>
+            </table>
+        </div>
+
+    </div><!-- /.row -->
+
+    <h4>Badge</h4>
+    <div class="row">
+
+        <div class="col-md-6 col-md-offset-3">
+
+            <p>Add a badge to your README by copying one of the following snippets.</p>
+
+            <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" />
+
+            <%= render partial: 'badge_link_templates', locals: {owner: @repo.owner, name: @repo.name} %>
+
+        </div>
+
+    </div><!-- /.row -->
+
+    <hr>
+
+    <%= render 'shared/footer' %>
+
+</div> <!-- /container -->
