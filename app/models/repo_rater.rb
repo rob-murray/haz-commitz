@@ -1,4 +1,3 @@
-
 class RepoRater
   MIN = 0
   MAX = 10
