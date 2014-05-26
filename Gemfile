@@ -25,7 +25,6 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
   gem 'guard-rspec'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
   gem "coveralls", "~> 0.7", require: false
   gem 'mocha'
   gem 'shoulda-matchers'

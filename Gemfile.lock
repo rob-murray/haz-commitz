@@ -222,7 +222,6 @@ DEPENDENCIES
   octokit (~> 3.1)
   rails (= 4.1.1)
   rails_12factor
-  rb-fsevent
   rspec-rails
   sass-rails (~> 4.0.3)
   shoulda-matchers
