@@ -1,4 +1,3 @@
-
 class Commit
   attr_reader :sha, :author_name, :date, :message
 
