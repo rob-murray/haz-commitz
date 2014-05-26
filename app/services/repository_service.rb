@@ -4,7 +4,7 @@ class RepositoryService
   end
 
   def repo(owner, repo)
-    GithubRepository.new(owner, repo)
+    Repository.new(owner, repo)
   end
 
   def repo_with_last_commit(owner, repo)
