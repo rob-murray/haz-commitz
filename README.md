@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/rob-murray/haz-commitz.svg?branch=master)](https://travis-ci.org/rob-murray/haz-commitz)
 [![Code Climate](https://codeclimate.com/github/rob-murray/haz-commitz.png)](https://codeclimate.com/github/rob-murray/haz-commitz)
 [![Coverage Status](https://coveralls.io/repos/rob-murray/haz-commitz/badge.png)](https://coveralls.io/r/rob-murray/haz-commitz)
-[![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz/badge.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
+[![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
 
 ### A GitHub badge service conveying how recently a project has been worked on - Proof of concept at the moment!
 
@@ -20,13 +20,19 @@ Simply just add a `Haz Commitz` badge to your repository README, we take care of
 #### Markdown
 
 ```markdown
-[![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/{owner}/{repository}/badge.svg)](http://haz-commitz.herokuapp.com/repos/{owner}/{repository})
+[![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/{owner}/{repository}.svg)](http://haz-commitz.herokuapp.com/repos/{owner}/{repository})
 ```
 
 #### RDOC
 
 ```
-{<img src="http://haz-commitz.herokuapp.com/repos/{owner}/{repository}/badge.svg" alt="Haz Commitz Status" />}[http://haz-commitz.herokuapp.com/repos/{owner}/{repository}]
+{<img src="http://haz-commitz.herokuapp.com/repos/{owner}/{repository}.svg" alt="Haz Commitz Status" />}[http://haz-commitz.herokuapp.com/repos/{owner}/{repository}]
+```
+
+#### HTML
+
+```
+<img src="http://haz-commitz.herokuapp.com/repos/{owner}/{repository}.svg" alt="Haz Commitz Status" />
 ```
 
 Access your repository stats via a URL like `http://haz-commitz.herokuapp.com/repos/{owner}/{repository}`.
