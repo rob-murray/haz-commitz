@@ -1,4 +1,3 @@
-
 class Repository
   include ActiveModel::Model
 
