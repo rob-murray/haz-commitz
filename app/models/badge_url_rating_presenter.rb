@@ -1,4 +1,3 @@
-
 class BadgeUrlRatingPresenter
   def initialize(rating)
     @rating = rating
