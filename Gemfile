@@ -29,6 +29,7 @@ group :development, :test do
   gem 'mocha'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'paratrooper' # wrapper for deploying to heroku
 end
 
 # Application specific
