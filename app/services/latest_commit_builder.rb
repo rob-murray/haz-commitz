@@ -1,5 +1,3 @@
-require_relative 'commit'
-
 class LatestCommitBuilder
   def initialize(github_api_client)
     @api_client = github_api_client
