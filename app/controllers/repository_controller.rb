@@ -9,12 +9,12 @@ class RepositoryController < ApplicationController
   end
 
   def show
-    @repo = fetch_and_rate_repo(params[:user_id], params[:id])
+    @repo = fetch_and_rate_repo
 
     respond_to do |format|
       format.html
       format.svg do
-        badge = badge(@repo.rating)
+        badge = badge_for_rating(@repo.rating)
 
         expires_now
         if stale?(etag: @repo.latest_commit.sha)
@@ -71,32 +71,20 @@ class RepositoryController < ApplicationController
     end
   end
 
-  # TODO: move these...
-
-  def fetch_and_rate_repo(owner, repo_name)
-    repo = repo_service.repo_with_last_commit(owner, repo_name)
-    repo.rate_with(repo_rater)
-
-    repo
+  def fetch_and_rate_repo
+    repo = Repository.new(params[:user_id], params[:id])
+    repo_fetcher.rate_repo(repo)
   end
 
   def github_client
-    @client ||= GithubAdapter.new(Rails.application.secrets.github_api_key)
+    @github_client ||= GithubAdapter.new(Rails.application.secrets.github_api_key)
   end
 
-  def repo_rater
-    TimeBasedRepoRater.new
+  def repo_fetcher
+    @repo_fetcher ||= RepositoryFetcher.new(github_client)
   end
 
-  def repo_service
-    @repo_service ||= RepositoryService.new(github_client)
-  end
-
-  def badge(repo_rating)
+  def badge_for_rating(repo_rating)
     BadgeUrlRatingPresenter.new(repo_rating)
-  end
-
-  def repo_from_path(repo_path)
-    GithubRepository.new_from_path(repo_path)
   end
 end
