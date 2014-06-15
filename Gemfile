@@ -25,8 +25,7 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
   gem 'guard-rspec'
-  gem "coveralls", "~> 0.7", require: false
-  gem 'mocha'
+  gem 'coveralls', '~> 0.7', require: false
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'paratrooper' # wrapper for deploying to heroku

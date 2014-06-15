@@ -93,13 +93,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.3.4)
-    mocha (1.1.0)
-      metaclass (~> 0.0.1)
     multi_json (1.10.1)
     multipart-post (2.0.0)
     netrc (0.7.7)
@@ -233,7 +230,6 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
-  mocha
   octokit (~> 3.1)
   paratrooper
   pg
