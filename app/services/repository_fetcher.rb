@@ -1,4 +1,4 @@
-class RepositoryService
+class RepositoryFetcher
   def initialize(github_api)
     @github_api = github_api
   end
@@ -7,9 +7,9 @@ class RepositoryService
     Repository.new(owner, repo)
   end
 
-  def repo_with_last_commit(owner, repo)
-    repo = repo(owner, repo)
+  def rate_repo(repo)
     repo.add_commit(commit_builder.latest_commit(repo.path))
+    repo.rate_with(repo_rater)
 
     repo
   end
@@ -18,5 +18,9 @@ class RepositoryService
 
   def commit_builder
     LatestCommitBuilder.new(@github_api)
+  end
+
+  def repo_rater
+    TimeBasedRepoRater.new
   end
 end
