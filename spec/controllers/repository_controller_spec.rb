@@ -70,7 +70,7 @@ RSpec.describe RepositoryController, type: :controller do
 
         it 'should return an image'
 
-        xit 'should set etag in response headers' do
+        it 'should set etag in response headers' do
           expect(response.etag).to be_present
         end
 
