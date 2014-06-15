@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe RepositoryController do
+RSpec.describe RepositoryController, type: :controller do
 
   context 'given a request with repos path' do
 

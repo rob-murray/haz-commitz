@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe 'repository/show.html.erb' do
+describe 'repository/show.html.erb', type: :view do
   let(:repo) do
     repo = Repository.new('owner_name', 'repo_name')
     repo.latest_commit = commit

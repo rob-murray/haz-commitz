@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe RootController do
+RSpec.describe RootController, type: :controller do
 
   context 'given a request to the server root' do
 

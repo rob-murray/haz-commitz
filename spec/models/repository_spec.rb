@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Repository do
 
@@ -44,17 +44,17 @@ describe Repository do
 
   describe '#rate_with' do
 
-    let(:rating_strategy) { mock }
+    let(:rating_strategy) { double('rating_strategy') }
 
     context 'with rating strategy' do
 
       it 'should ask rater for value' do
-        rating_strategy.expects(:rate).with(repo).returns(1)
+        expect(rating_strategy).to receive(:rate).with(repo).and_return(1)
         repo.rate_with(rating_strategy)
       end
 
       it 'should apply rating to repository' do
-        rating_strategy.stubs(:rate).returns(10)
+        allow(rating_strategy).to receive(:rate).and_return(10)
         repo.rate_with(rating_strategy)
         expect(repo.rating).to eq(10)
       end
