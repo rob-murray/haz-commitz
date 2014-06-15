@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RepositoryController, type: :controller do
-
   context 'given a request with repos path' do
-
     before { get :index }
 
     it 'responds with redirect' do
@@ -16,12 +14,6 @@ RSpec.describe RepositoryController, type: :controller do
   end
 
   context 'given a request with repo owner and name' do
-
-    before do
-      RepositoryService.any_instance.stubs(:repo_with_last_commit).returns(repo)
-      repo.stubs(:latest_commit).returns(commit)
-    end
-
     let(:repo) do
       Repository.new('owner_name', 'repo_name')
     end
@@ -30,14 +22,17 @@ RSpec.describe RepositoryController, type: :controller do
       Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
     end
 
+    before do
+      allow_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).and_return(repo)
+      allow(repo).to receive(:latest_commit).and_return(commit)
+    end
+
     context 'with valid repo' do
-
       context 'html request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name' }
 
         it 'requests repository data' do
-          RepositoryService.any_instance.expects(:repo_with_last_commit).with('owner_name', 'repo_name').returns(repo)
+          expect_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).with('owner_name', 'repo_name').and_return(repo)
           get :show, user_id: 'owner_name', id: 'repo_name'
         end
 
@@ -55,11 +50,10 @@ RSpec.describe RepositoryController, type: :controller do
       end
 
       context 'badge request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
 
         it 'requests repository data' do
-          RepositoryService.any_instance.expects(:repo_with_last_commit).with('owner_name', 'repo_name').returns(repo)
+          expect_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).with('owner_name', 'repo_name').and_return(repo)
           get :show, user_id: 'owner_name', id: 'repo_name', format: :svg
         end
 
@@ -84,13 +78,11 @@ RSpec.describe RepositoryController, type: :controller do
     end
 
     context 'with a repo that does not exist' do
-
       before do
-        RepositoryService.any_instance.stubs(:repo_with_last_commit).raises(Octokit::NotFound)
+        allow_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).and_raise(Octokit::NotFound)
       end
 
       context 'html request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name' }
 
         it 'returns not found status' do
@@ -99,7 +91,6 @@ RSpec.describe RepositoryController, type: :controller do
       end
 
       context 'badge request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
 
         it 'returns not found status' do
@@ -114,13 +105,11 @@ RSpec.describe RepositoryController, type: :controller do
     end
 
     context 'with a repo that is unauthorised' do
-
       before do
-        RepositoryService.any_instance.stubs(:repo_with_last_commit).raises(Octokit::Unauthorized)
+        allow_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).and_raise(Octokit::Unauthorized)
       end
 
       context 'html request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name' }
 
         it 'returns unauthorised status' do
@@ -129,7 +118,6 @@ RSpec.describe RepositoryController, type: :controller do
       end
 
       context 'badge request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
 
         it 'returns unauthorised status' do
@@ -144,13 +132,11 @@ RSpec.describe RepositoryController, type: :controller do
     end
 
     context 'when the GitHub API rate limit is exceeded' do
-
       before do
-        RepositoryService.any_instance.stubs(:repo_with_last_commit).raises(Octokit::TooManyRequests)
+        allow_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).and_raise(Octokit::TooManyRequests)
       end
 
       context 'html request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name' }
 
         it 'returns service unavailble status' do
@@ -159,7 +145,6 @@ RSpec.describe RepositoryController, type: :controller do
       end
 
       context 'badge request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
 
         it 'returns service unavailble status' do
@@ -174,13 +159,11 @@ RSpec.describe RepositoryController, type: :controller do
     end
 
     context 'when an exception is thrown' do
-
       before do
-        RepositoryService.any_instance.stubs(:repo_with_last_commit).raises(Exception)
+        allow_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).and_raise(Exception)
       end
 
       context 'html request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name' }
 
         it 'returns service unavailble status' do
@@ -189,7 +172,6 @@ RSpec.describe RepositoryController, type: :controller do
       end
 
       context 'badge request' do
-
         before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
 
         it 'returns service unavailble status' do
@@ -205,7 +187,6 @@ RSpec.describe RepositoryController, type: :controller do
   end
 
   context 'given a get request to add a repository' do
-
     before { get :new }
 
     it 'returns valid response' do
@@ -219,12 +200,10 @@ RSpec.describe RepositoryController, type: :controller do
   end
 
   context 'given a post request for new repository' do
-
     context 'given a request in valid format' do
-
       before do
-        RepositoryService.any_instance.stubs(:repo_with_last_commit).returns(repo)
-        repo.stubs(:latest_commit).returns(commit)
+        allow_any_instance_of(RepositoryService).to receive(:repo_with_last_commit).and_return(repo)
+        allow(repo).to receive(:latest_commit).and_return(commit)
 
         post :create, repository: { path: 'owner_name/repo_name' }
       end

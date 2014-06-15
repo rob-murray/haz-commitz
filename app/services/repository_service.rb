@@ -9,7 +9,7 @@ class RepositoryService
 
   def repo_with_last_commit(owner, repo)
     repo = repo(owner, repo)
-    repo.latest_commit = commit_builder.latest_commit(repo.path)
+    repo.add_commit(commit_builder.latest_commit(repo.path))
 
     repo
   end

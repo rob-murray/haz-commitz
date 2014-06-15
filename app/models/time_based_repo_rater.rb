@@ -4,10 +4,9 @@ require_relative 'repo_rater'
 class TimeBasedRepoRater < RepoRater
   def rate(github_repo)
     time_now = DateTime.now
-
     return MIN if github_repo.nil?
 
-    last_commit_time = github_repo.latest_commit.date # fix
+    last_commit_time = github_repo.latest_commit_date
 
     if last_commit_time.nil? || !last_commit_time.is_a?(Time) # catch when not Time object?
       return MIN
