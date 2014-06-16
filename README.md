@@ -51,7 +51,7 @@ In proof of concept version we simply ask GitHub API when the last commit to the
 
 ## Build, Test, & Run
 
-Project runs on Sinatra and Octokit gems currently.
+Project is just a simple Rails app and uses Octokit gems currently.
 
 ```bash
 $ bundle install
@@ -63,7 +63,13 @@ Test it with Rspec.
 $ rspec
 ```
 
-Run it anywhere you can run Rack applications, for example Heroku - checkout `config.ru` and `Procfile`.
+Run it.
+
+```bash
+$ foreman start
+```
+
+Run it anywhere you can run Rails applications, for example Heroku - checkout `Procfile`.
 
 It needs an environment variable containing a [GitHub API OAuth token](https://developer.github.com/v3/oauth/).
 
