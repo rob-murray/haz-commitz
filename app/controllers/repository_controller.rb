@@ -1,5 +1,6 @@
 class RepositoryController < ApplicationController
   rescue_from Exception, with: :something_went_wrong
+  rescue_from BadgeRequestError, with: :something_went_wrong
   rescue_from Octokit::NotFound, with: :repository_not_found
   rescue_from Octokit::Unauthorized, with: :repository_not_authorised
   rescue_from Octokit::TooManyRequests, with: :over_api_limit
