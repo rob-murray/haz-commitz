@@ -161,6 +161,33 @@ RSpec.describe RepositoryController, type: :controller do
       end
     end
 
+    context 'when badge service is down' do
+      before do
+        allow(ImageProxy).to receive(:fetch).and_raise(BadgeRequestError)
+      end
+
+      context 'html request' do
+        before { get :show, user_id: 'owner_name', id: 'repo_name' }
+
+        it 'returns valid response' do
+          expect(response.status).to eq(200)
+        end
+      end
+
+      context 'badge request' do
+        before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
+
+        it 'returns service unavailble status' do
+          expect(response.status).to eq(500)
+        end
+
+        it 'returns an error image' do
+          # will treat this as an image test until that is actually fixed
+          expect(response.content_type).to include('image/svg+xml')
+        end
+      end
+    end
+
     context 'when an exception is thrown' do
       before do
         allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_raise(Exception)
