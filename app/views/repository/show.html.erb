@@ -3,7 +3,8 @@
 <div class="container" id="repo">
     <h3>Repository</h3>
     <div class="well well-lg">
-        <h4><%= @repo.owner %> / <%= @repo.name %> <a href="https://github.com/<%= @repo.path %>"><%= image_tag('github.png') %></a></h4>
+        <h4><%= @repo.owner %> / <%= @repo.name %>
+          <%= render partial: 'github_repo_link', locals: { path: @repo.path } %></h4>
 
         <p>Haz Commitz rating: <span id="rating" class="badge"><%= @repo.rating %></span></p>
     </div>
@@ -48,7 +49,7 @@
 
             <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" />
 
-            <%= render partial: 'badge_link_templates', locals: {owner: @repo.owner, name: @repo.name} %>
+            <%= render partial: 'badge_link_templates', locals: { owner: @repo.owner, name: @repo.name } %>
 
         </div>
 
