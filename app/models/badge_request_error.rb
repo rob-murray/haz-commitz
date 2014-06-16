@@ -1,0 +1,2 @@
+class BadgeRequestError < StandardError
+end
