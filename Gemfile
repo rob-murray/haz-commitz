@@ -15,6 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 gem 'unicorn'
+gem 'rollbar'
 
 group :staging, :production do
   gem 'rails_12factor'
