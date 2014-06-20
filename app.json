@@ -1,0 +1,24 @@
+
+{
+  "name": "Haz-Commitz",
+  "description": "A Github badge service conveying how recently a project has been worked on - Proof of Concept!",
+  "website": "https://github.com/rob-murray/haz-commitz",
+  "addons": ["heroku-postgresql:hobby-dev", "papertrail"],
+  "env": {
+    "RAILS_ENV": "production",
+    "GITHUB_TOKEN": {
+            "description": "A valid GitHub API token"
+    },
+    "COOKIE_SECRET": {
+            "description": "This gets generated",
+            "generator": "secret"
+    },
+    "SETUP_BY": {
+            "description": "Who initiated this setup",
+            "required": true
+    }
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
