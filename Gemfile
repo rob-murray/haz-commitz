@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.1.3'
 
-gem 'rails', '4.1.5'
+gem 'rails', '4.1.7'
 
 # No DB but just stick with AR and pg for now
 gem 'pg'
