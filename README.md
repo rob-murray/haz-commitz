@@ -1,5 +1,7 @@
 ## Haz Commitz?!
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rob-murray/haz-commitz?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/rob-murray/haz-commitz.svg?branch=master)](https://travis-ci.org/rob-murray/haz-commitz)
 [![Code Climate](https://codeclimate.com/github/rob-murray/haz-commitz.png)](https://codeclimate.com/github/rob-murray/haz-commitz)
 [![Coverage Status](https://coveralls.io/repos/rob-murray/haz-commitz/badge.png)](https://coveralls.io/r/rob-murray/haz-commitz)
