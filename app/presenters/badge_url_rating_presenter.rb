@@ -1,19 +1,24 @@
 class BadgeUrlRatingPresenter
+  BASE_URI = "http://img.shields.io/badge/".freeze
+  SUBJECT = "Haz%20Commitz".freeze
+  SEPARATOR = "-".freeze
+  FORMAT = ".svg".freeze
+
   def initialize(rating)
     @rating = rating
   end
 
   def display
-    badge_url = case @rating
-                when 1 then 'http://img.shields.io/badge/Haz%20Commitz-&gt;%201%20year-red.svg'
-                when 2..3 then 'http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg'
-                when 4..5 then 'http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg'
-                when 6..7 then 'http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg'
-                when 8..9 then 'http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg'
-                when 10 then 'http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20week-brightgreen.svg'
-                else 'http://img.shields.io/badge/Haz%20Commitz-None-red.svg'
-                end
+    status_colour_segment =  case @rating
+        when 1 then '%3E%201%20year-red' # > 1 year
+        when 2..3 then '%3C%201%20year-orange.svg' # < 1 year
+        when 4..5 then '%3C%206%20months-yellow.svg' # < 6 months
+        when 6..7 then '%3C%203%20months-yellowgreen.svg' # < 3 months
+        when 8..9 then '%3C%201%20month-brightgreen.svg' # < 1 month
+        when 10 then '%3C%201%20week-brightgreen' # < 1 week
+        else 'None-red.svg'
+        end
 
-    badge_url
+    [BASE_URI, SUBJECT, SEPARATOR, status_colour_segment, FORMAT].join
   end
 end

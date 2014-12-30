@@ -7,9 +7,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(10) }
 
     it 'should return a url for best rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20week-brightgreen.svg')
+      expect(badge_url.display).to match /brightgreen/
     end
-
   end
 
   context 'given a rating of 9' do
@@ -17,9 +16,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(9) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg')
+      expect(badge_url.display).to match /brightgreen/
     end
-
   end
 
   context 'given a rating of 8' do
@@ -27,9 +25,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(8) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20month-brightgreen.svg')
+      expect(badge_url.display).to match /brightgreen/
     end
-
   end
 
   context 'given a rating of 7' do
@@ -37,9 +34,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(7) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg')
+      expect(badge_url.display).to match /yellowgreen/
     end
-
   end
 
   context 'given a rating of 6' do
@@ -47,9 +43,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(6) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%203%20months-yellowgreen.svg')
+      expect(badge_url.display).to match /yellowgreen/
     end
-
   end
 
   context 'given a rating of 5' do
@@ -57,9 +52,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(5) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg')
+      expect(badge_url.display).to match /yellow/
     end
-
   end
 
   context 'given a rating of 4' do
@@ -67,9 +61,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(4) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%206%20months-yellow.svg')
+      expect(badge_url.display).to match /yellow/
     end
-
   end
 
   context 'given a rating of 3' do
@@ -77,9 +70,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(3) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg')
+      expect(badge_url.display).to match /orange/
     end
-
   end
 
   context 'given a rating of 2' do
@@ -87,9 +79,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(2) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&lt;%201%20year-orange.svg')
+      expect(badge_url.display).to match /orange/
     end
-
   end
 
   context 'given a rating of 1' do
@@ -97,9 +88,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(1) }
 
     it 'should return a url for rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-&gt;%201%20year-red.svg')
+      expect(badge_url.display).to match /red/
     end
-
   end
 
   context 'given a minimum rating' do
@@ -107,9 +97,8 @@ describe BadgeUrlRatingPresenter do
     subject(:badge_url) { BadgeUrlRatingPresenter.new(0) }
 
     it 'should return a url for lowest rating' do
-      expect(badge_url.display).to eq('http://img.shields.io/badge/Haz%20Commitz-None-red.svg')
+      expect(badge_url.display).to match /red/
     end
-
   end
 
 end
