@@ -1,2 +1,0 @@
-class BadgeRequestError < StandardError
-end
