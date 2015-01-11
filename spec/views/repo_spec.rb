@@ -39,7 +39,7 @@ describe 'repository/show.html.erb', type: :view do
 
   context 'with a last commit that has no message' do
     let(:commit) do
-      Commit.new('sha-12345', 'joe bloggs', time_days_ago(7))
+      Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), '')
     end
 
     it 'should not display any message or indication of' do

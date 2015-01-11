@@ -23,23 +23,6 @@ describe Commit do
       it 'should store commit message' do
         expect(commit.message).to eq('a brilliant fix')
       end
-
     end
-
-    context 'without commit message' do
-
-      subject(:commit) { Commit.new('abcdefg', 'joe bloggs', DateTime.now) }
-
-      it 'creates instance' do
-        expect(commit).not_to be_nil
-      end
-
-      it 'should store empty message' do
-        expect(commit.message).to eq('')
-      end
-
-    end
-
   end
-
 end

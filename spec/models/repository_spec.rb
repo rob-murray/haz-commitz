@@ -46,8 +46,8 @@ describe Repository do
   end
 
   describe 'adding commits' do
-    let(:commit1) { Commit.new('abcdefg', 'joe bloggs', DateTime.now) }
-    let(:commit2) { Commit.new('zzzzzzz', 'a guy', DateTime.now) }
+    let(:commit1) { Commit.new('abcdefg', 'joe bloggs', DateTime.now, '') }
+    let(:commit2) { Commit.new('zzzzzzz', 'a guy', DateTime.now, '') }
 
     it 'should add one commit' do
       expect {
