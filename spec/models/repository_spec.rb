@@ -1,24 +1,19 @@
 require 'rails_helper'
 
-describe Repository do
+RSpec.describe Repository do
   subject { Repository.new('user-name', 'subject-name') }
 
   describe 'creating with params' do
-
     it 'should assign user-name' do
       expect(subject.owner).to eq('user-name')
     end
 
-    it 'should assign subjectsitory name' do
+    it 'should assign repository name' do
       expect(subject.name).to eq('subject-name')
     end
 
     it 'should initialize with zero rating' do
       expect(subject.rating).to eq(0)
-    end
-
-    it 'should be valid' do
-      expect(subject).to be_valid
     end
 
     it 'should not have any commits' do
@@ -30,16 +25,7 @@ describe Repository do
     end
   end
 
-  describe 'creating empty' do
-    subject { Repository.new }
-
-    it 'should not be valid' do
-      expect(subject).not_to be_valid
-    end
-  end
-
   describe '#path' do
-
     it 'should return path from user-name and subject-name' do
       expect(subject.path).to eq('user-name/subject-name')
     end
@@ -108,46 +94,6 @@ describe Repository do
 
         subject.rate_with(rating_strategy)
         expect(subject.rating).to eq(10)
-      end
-    end
-  end
-
-  describe '.new_from_path' do
-    context 'when param is nil' do
-
-      it 'should return nil' do
-        expect(Repository.new_from_path(nil)).to be_nil
-      end
-    end
-
-    context 'when param is has path components' do
-      subject { Repository.new_from_path('user-name/subject-name') }
-
-      it 'should return instance' do
-        expect(subject).not_to be_nil
-      end
-
-      it 'should assign user-name' do
-        expect(subject.owner).to eq('user-name')
-      end
-
-      it 'should assign subjectsitory name' do
-        expect(subject.name).to eq('subject-name')
-      end
-
-    end
-
-    context 'when param has not enough path components' do
-
-      it 'should return nil' do
-        expect(Repository.new_from_path('foo')).to be_nil
-      end
-    end
-
-    context 'when param has too many path components' do
-
-      it 'should return nil' do
-        expect(Repository.new_from_path('foo/bar/foo')).to be_nil
       end
     end
   end

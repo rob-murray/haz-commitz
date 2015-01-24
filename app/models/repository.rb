@@ -1,19 +1,17 @@
-class Repository
-  include ActiveModel::Model
+class Repository < Struct.new(:owner, :name)
   INTITAL_RATING = 0
 
-  attr_reader :owner, :name, :commits
-  attr_accessor :rating
+  attr_reader :commits, :rating
 
-  validates :owner, presence: true
-  validates :name, presence: true
-
-  def initialize(owner = nil, repo_name = nil)
-    @owner = owner
-    @name = repo_name
+  def initialize(*args)
+    super(*args)
 
     @rating = INTITAL_RATING
     @commits = []
+  end
+
+  def persisted?
+    false
   end
 
   def path
@@ -34,11 +32,5 @@ class Repository
 
   def rate_with(rating_strategy)
     @rating = rating_strategy.rate(self)
-  end
-
-  def self.new_from_path(repo_path)
-    unless repo_path.nil? || repo_path.split('/').size != 2
-      Repository.new(*repo_path.split('/'))
-    end
   end
 end
