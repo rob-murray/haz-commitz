@@ -234,7 +234,7 @@ RSpec.describe RepositoryController, type: :controller do
       before do
         allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_return(repo)
 
-        post :create, repository: { path: 'owner_name/repo_name' }
+        post :create, new_repository_form: { path: 'owner_name/repo_name' }
       end
 
       let(:repo) do
@@ -259,7 +259,7 @@ RSpec.describe RepositoryController, type: :controller do
 
     context 'with invalid data from form' do
 
-      before { post :create, repository: { path: 'blah' } }
+      before { post :create, new_repository_form: { path: 'blah' } }
 
       it 'returns redirect' do
         expect(response).to be_redirect
@@ -270,7 +270,7 @@ RSpec.describe RepositoryController, type: :controller do
       end
 
       it 'displays flash message' do
-        expect(flash[:error]).to match(/Invalid repository format/)
+        expect(flash[:error]).to match(/Path is invalid/)
       end
     end
   end
