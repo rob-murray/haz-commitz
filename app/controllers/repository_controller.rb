@@ -26,24 +26,24 @@ class RepositoryController < ApplicationController
   end
 
   def new
-    @repo = Repository.new
+    @repo = NewRepositoryForm.new
   end
 
   def create
-    repo = Repository.new_from_path(new_repo_params[:path])
+    repo = NewRepositoryForm.new(new_repo_params)
 
-    if repo.nil?
-      flash[:error] = 'Invalid repository format'
-      redirect_to new_repository_path
-    else
+    if repo.valid?
       redirect_to repository_path user_id: repo.owner, id: repo.name
+    else
+      flash[:error] = repo.errors.full_messages.to_sentence
+      redirect_to new_repository_path
     end
   end
 
   private
 
   def new_repo_params
-    params.require(:repository).permit(:path)
+    params.require(:new_repository_form).permit(:path)
   end
 
   def repository_not_found
