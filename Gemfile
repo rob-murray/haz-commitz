@@ -22,6 +22,7 @@ gem 'values'
 
 group :staging, :production do
   gem 'rails_12factor'
+  gem 'rack-timeout'
 end
 
 group :development, :test do

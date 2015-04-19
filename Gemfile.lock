@@ -136,6 +136,7 @@ GEM
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.2.4)
     rails (4.1.9)
       actionmailer (= 4.1.9)
       actionpack (= 4.1.9)
@@ -260,6 +261,7 @@ DEPENDENCIES
   octokit (~> 3.1)
   paratrooper
   pg
+  rack-timeout
   rails (= 4.1.9)
   rails_12factor
   rollbar
