@@ -73,7 +73,7 @@ class RepositoryController < ApplicationController
   end
 
   def fetch_and_rate_repo
-    repo = Repository.new(params[:user_id], params[:id])
+    repo = Repository.from_owner_and_name(params[:user_id], params[:id])
     repo_fetcher.rate_repo(repo)
   end
 

@@ -18,7 +18,6 @@ gem 'unicorn'
 gem 'rollbar'
 
 gem 'virtus'
-gem 'values'
 
 group :staging, :production do
   gem 'rails_12factor'

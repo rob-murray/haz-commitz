@@ -4,7 +4,7 @@ class RepositoryFetcher
   end
 
   def repo(owner, repo)
-    Repository.new(owner, repo)
+    Repository.from_owner_and_name(owner, repo)
   end
 
   def rate_repo(repo)

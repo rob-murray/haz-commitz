@@ -1,12 +1,9 @@
 require 'rails_helper'
 
 describe Commit do
-
-  describe 'creating instance' do
-
+  describe '.build' do
     context 'with all valid data' do
-
-      subject(:commit) { Commit.new('abcdefg', 'joe bloggs', DateTime.now, 'a brilliant fix') }
+      subject(:commit) { Commit.build('abcdefg', 'joe bloggs', Time.zone.now, 'a brilliant fix') }
 
       it 'should store commit sha' do
         expect(commit.sha).to eq('abcdefg')
@@ -17,7 +14,7 @@ describe Commit do
       end
 
       it 'should store commit date' do
-        expect(commit.date.to_s).to eq(DateTime.now.to_s)
+        expect(commit.date.to_s).to eq(Time.zone.now.to_s)
       end
 
       it 'should store commit message' do

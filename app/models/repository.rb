@@ -1,13 +1,15 @@
-class Repository < Struct.new(:owner, :name)
-  INTITAL_RATING = 0
+class Repository
+  include Virtus.model
 
-  attr_reader :commits, :rating
+  attribute :commits, Array, default: [], writer: :private
+  attribute :rating, Integer, default: 0, writer: :private
+  attribute :owner, String
+  attribute :name, String
 
-  def initialize(*args)
-    super(*args)
-
-    @rating = INTITAL_RATING
-    @commits = []
+  class << self
+    def from_owner_and_name(owner, name)
+      new(owner: owner, name: name)
+    end
   end
 
   def persisted?

@@ -15,13 +15,13 @@ RSpec.describe RepositoryController, type: :controller do
 
   context 'given a request with repo owner and name' do
     let(:repo) do
-      repo = Repository.new('owner_name', 'repo_name')
+      repo = Repository.from_owner_and_name('owner_name', 'repo_name')
       repo.add_commit(commit)
       repo
     end
 
     let(:commit) do
-      Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
+      Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
     end
 
     before do
@@ -238,11 +238,11 @@ RSpec.describe RepositoryController, type: :controller do
       end
 
       let(:repo) do
-        Repository.new('owner_name', 'repo_name')
+        Repository.from_owner_and_name('owner_name', 'repo_name')
       end
 
       let(:commit) do
-        Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
+        Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
       end
 
       it 'returns redirect' do

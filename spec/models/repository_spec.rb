@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Repository do
-  subject { Repository.new('user-name', 'subject-name') }
+  subject { Repository.from_owner_and_name('user-name', 'subject-name') }
 
   describe 'creating with params' do
     it 'should assign user-name' do
@@ -32,8 +32,8 @@ RSpec.describe Repository do
   end
 
   describe 'adding commits' do
-    let(:commit1) { Commit.new('abcdefg', 'joe bloggs', DateTime.now, '') }
-    let(:commit2) { Commit.new('zzzzzzz', 'a guy', DateTime.now, '') }
+    let(:commit1) { Commit.build('abcdefg', 'joe bloggs', DateTime.now, '') }
+    let(:commit2) { Commit.build('zzzzzzz', 'a guy', DateTime.now, '') }
 
     it 'should add one commit' do
       expect {

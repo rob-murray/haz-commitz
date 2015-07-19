@@ -6,6 +6,11 @@ class LatestCommitBuilder
   def latest_commit(repo_path, branch = 'master')
     commit_hash = @api_client.list_commits(repo_path, branch).first
 
-    Commit.new(commit_hash.sha, commit_hash.commit.author.name, commit_hash.commit.author.date, commit_hash.commit.message)
+    Commit.build(
+      commit_hash.sha,
+      commit_hash.commit.author.name,
+      commit_hash.commit.author.date,
+      commit_hash.commit.message
+    )
   end
 end

@@ -240,7 +240,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    values (1.8.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
