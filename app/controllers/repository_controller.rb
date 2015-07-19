@@ -13,12 +13,14 @@ class RepositoryController < ApplicationController
     @repo = fetch_and_rate_repo
 
     respond_to do |format|
-      format.html
+      format.html do
+        @letter_rating = letter_for_rating(@repo.rating)
+      end
       format.svg do
         badge = badge_for_rating(@repo.rating)
 
         expires_now
-        if stale?(etag: @repo.latest_commit.sha)
+        if stale?(etag: [RepoEtag.etag(@repo), AppConfig.badge_version])
           render inline: ImageProxy.fetch(badge.display)
         end
       end
@@ -74,18 +76,18 @@ class RepositoryController < ApplicationController
 
   def fetch_and_rate_repo
     repo = Repository.from_owner_and_name(params[:user_id], params[:id])
-    repo_fetcher.rate_repo(repo)
+    GithubRepo.new(repo, github_client).rate_with(RepoRater)
   end
 
   def github_client
     @github_client ||= GithubAdapter.new(Rails.application.secrets.github_api_key)
   end
 
-  def repo_fetcher
-    @repo_fetcher ||= RepositoryFetcher.new(github_client)
-  end
-
   def badge_for_rating(repo_rating)
     BadgeUrlRatingPresenter.new(repo_rating)
+  end
+
+  def letter_for_rating(rating)
+    LetterRatingPresenter.new(rating).letter
   end
 end

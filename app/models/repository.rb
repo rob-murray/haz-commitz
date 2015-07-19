@@ -1,7 +1,7 @@
 class Repository
   include Virtus.model
 
-  attribute :commits, Array, default: [], writer: :private
+  attribute :commits, Array[Commit], default: []
   attribute :rating, Integer, default: 0, writer: :private
   attribute :owner, String
   attribute :name, String
@@ -25,14 +25,16 @@ class Repository
   end
 
   def latest_commit
-    commits.last
+    commits.first
   end
 
   def latest_commit_date
     latest_commit.date
   end
 
-  def rate_with(rating_strategy)
-    @rating = rating_strategy.rate(self)
+  def rate_with(rater)
+    self.rating = rater.build(self).rate
+    self
   end
+
 end

@@ -5,7 +5,7 @@ class Commit
     attribute :sha, String
     attribute :author_name, String
     attribute :date, Time
-    attribute :message, String
+    attribute :message, String, default: ""
   end
 
   class << self

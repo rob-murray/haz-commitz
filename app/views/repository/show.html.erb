@@ -6,7 +6,7 @@
         <h4><%= @repo.owner %> / <%= @repo.name %>
           <%= render partial: 'github_repo_link', locals: { path: @repo.path } %></h4>
 
-        <p>Haz Commitz rating: <span id="rating" class="badge"><%= @repo.rating %></span></p>
+        <p>Haz Commitz rating: <span id="rating" class="badge"><%= @letter_rating %></span></p>
     </div>
 
     <h4>Last commit</h4>

@@ -11,8 +11,11 @@ describe 'repository/show.html.erb', type: :view do
     Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
   end
 
+  let(:rating) { "X" }
+
   before do
     assign(:repo, repo)
+    assign(:letter_rating, rating)
 
     render
   end
@@ -23,7 +26,7 @@ describe 'repository/show.html.erb', type: :view do
   end
 
   it 'displays repository rating' do
-    expect(rendered).to have_selector('span', text: repo.rating)
+    expect(rendered).to have_selector('span', text: rating)
   end
 
   it 'should display last commit info' do
