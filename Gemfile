@@ -33,6 +33,11 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'paratrooper' # wrapper for deploying to heroku
+  gem 'awesome_print'
+  gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-rescue'
+  gem 'pry-byebug'
 end
 
 # Application specific
