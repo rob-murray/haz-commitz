@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Repository do
-  subject { Repository.new('user-name', 'subject-name') }
+  subject { Repository.from_owner_and_name('user-name', 'subject-name') }
 
   describe 'creating with params' do
     it 'should assign user-name' do
@@ -32,8 +32,8 @@ RSpec.describe Repository do
   end
 
   describe 'adding commits' do
-    let(:commit1) { Commit.new('abcdefg', 'joe bloggs', DateTime.now, '') }
-    let(:commit2) { Commit.new('zzzzzzz', 'a guy', DateTime.now, '') }
+    let(:commit1) { Commit.build('abcdefg', 'joe bloggs', Time.zone.now, '') }
+    let(:commit2) { Commit.build('zzzzzzz', 'a guy', Time.zone.now, '') }
 
     it 'should add one commit' do
       expect {
@@ -66,15 +66,13 @@ RSpec.describe Repository do
         expect(commits.last).to eq(commit2)
       end
 
-      it 'should return latest_commit as the last commit' do
-        expect(subject.latest_commit).to eq(commit2)
+      it 'should return latest_commit as the last commit in reverse' do
+        expect(subject.latest_commit).to eq(commit1)
       end
 
       it 'should return the latest commit date' do
-        expect(subject.latest_commit_date).to eq(commit2.date)
+        expect(subject.latest_commit_date).to eq(commit1.date)
       end
-
-      it 'should sort commits in date order'
     end
   end
 
@@ -82,14 +80,22 @@ RSpec.describe Repository do
     let(:rating_strategy) { double('rating_strategy') }
 
     context 'with rating strategy' do
+      it 'should build rater with repo' do
+        allow(rating_strategy).to receive(:rate).and_return(1)
+        expect(rating_strategy).to receive(:build).with(subject).and_return(rating_strategy)
+
+        subject.rate_with(rating_strategy)
+      end
 
       it 'should ask rater for value' do
-        expect(rating_strategy).to receive(:rate).with(subject).and_return(1)
+        allow(rating_strategy).to receive(:build).with(subject).and_return(rating_strategy)
+        expect(rating_strategy).to receive(:rate).and_return(1)
 
         subject.rate_with(rating_strategy)
       end
 
       it 'should apply rating to Repository' do
+        allow(rating_strategy).to receive(:build).with(subject).and_return(rating_strategy)
         allow(rating_strategy).to receive(:rate).and_return(10)
 
         subject.rate_with(rating_strategy)

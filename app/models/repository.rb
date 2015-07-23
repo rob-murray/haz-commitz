@@ -1,13 +1,15 @@
-class Repository < Struct.new(:owner, :name)
-  INTITAL_RATING = 0
+class Repository
+  include Virtus.model
 
-  attr_reader :commits, :rating
+  attribute :commits, Array[Commit], default: []
+  attribute :rating, Integer, default: 0, writer: :private
+  attribute :owner, String
+  attribute :name, String
 
-  def initialize(*args)
-    super(*args)
-
-    @rating = INTITAL_RATING
-    @commits = []
+  class << self
+    def from_owner_and_name(owner, name)
+      new(owner: owner, name: name)
+    end
   end
 
   def persisted?
@@ -23,14 +25,16 @@ class Repository < Struct.new(:owner, :name)
   end
 
   def latest_commit
-    commits.last
+    commits.first
   end
 
   def latest_commit_date
     latest_commit.date
   end
 
-  def rate_with(rating_strategy)
-    @rating = rating_strategy.rate(self)
+  def rate_with(rater)
+    self.rating = rater.build(self).rate
+    self
   end
+
 end

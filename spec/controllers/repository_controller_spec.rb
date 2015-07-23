@@ -15,17 +15,17 @@ RSpec.describe RepositoryController, type: :controller do
 
   context 'given a request with repo owner and name' do
     let(:repo) do
-      repo = Repository.new('owner_name', 'repo_name')
+      repo = Repository.from_owner_and_name('owner_name', 'repo_name')
       repo.add_commit(commit)
       repo
     end
 
     let(:commit) do
-      Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
+      Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
     end
 
     before do
-      allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_return(repo)
+      allow(GithubRepo).to receive(:new).and_return(repo)
     end
 
     context 'with valid repo' do
@@ -33,7 +33,7 @@ RSpec.describe RepositoryController, type: :controller do
         before { get :show, user_id: 'owner_name', id: 'repo_name' }
 
         it 'requests repository data' do
-          expect_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_return(repo)
+          expect(GithubRepo).to receive(:new).and_return(repo)
 
           get :show, user_id: 'owner_name', id: 'repo_name'
         end
@@ -55,7 +55,7 @@ RSpec.describe RepositoryController, type: :controller do
         before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
 
         it 'requests repository data' do
-          expect_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_return(repo)
+          expect(GithubRepo).to receive(:new).and_return(repo)
 
           get :show, user_id: 'owner_name', id: 'repo_name', format: :svg
         end
@@ -82,7 +82,7 @@ RSpec.describe RepositoryController, type: :controller do
 
     context 'with a repo that does not exist' do
       before do
-        allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_raise(Octokit::NotFound)
+        allow(GithubRepo).to receive(:new).and_raise(Octokit::NotFound)
       end
 
       context 'html request' do
@@ -109,7 +109,7 @@ RSpec.describe RepositoryController, type: :controller do
 
     context 'with a repo that is unauthorised' do
       before do
-        allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_raise(Octokit::Unauthorized)
+        allow(GithubRepo).to receive(:new).and_raise(Octokit::Unauthorized)
       end
 
       context 'html request' do
@@ -136,7 +136,7 @@ RSpec.describe RepositoryController, type: :controller do
 
     context 'when the GitHub API rate limit is exceeded' do
       before do
-        allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_raise(Octokit::TooManyRequests)
+        allow(GithubRepo).to receive(:new).and_raise(Octokit::TooManyRequests)
       end
 
       context 'html request' do
@@ -190,7 +190,7 @@ RSpec.describe RepositoryController, type: :controller do
 
     context 'when an exception is thrown' do
       before do
-        allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_raise(Exception)
+        allow(GithubRepo).to receive(:new).and_raise(Exception)
       end
 
       context 'html request' do
@@ -232,17 +232,17 @@ RSpec.describe RepositoryController, type: :controller do
   context 'given a post request for new repository' do
     context 'given a request in valid format' do
       before do
-        allow_any_instance_of(RepositoryFetcher).to receive(:rate_repo).and_return(repo)
+        allow(GithubRepo).to receive(:new).and_return(repo)
 
         post :create, new_repository_form: { path: 'owner_name/repo_name' }
       end
 
       let(:repo) do
-        Repository.new('owner_name', 'repo_name')
+        Repository.from_owner_and_name('owner_name', 'repo_name')
       end
 
       let(:commit) do
-        Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
+        Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
       end
 
       it 'returns redirect' do

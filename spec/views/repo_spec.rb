@@ -2,17 +2,20 @@ require 'rails_helper'
 
 describe 'repository/show.html.erb', type: :view do
   let(:repo) do
-    repo = Repository.new('owner_name', 'repo_name')
+    repo = Repository.from_owner_and_name('owner_name', 'repo_name')
     repo.add_commit(commit)
     repo
   end
 
   let(:commit) do
-    Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
+    Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
   end
+
+  let(:rating) { "X" }
 
   before do
     assign(:repo, repo)
+    assign(:letter_rating, rating)
 
     render
   end
@@ -23,7 +26,7 @@ describe 'repository/show.html.erb', type: :view do
   end
 
   it 'displays repository rating' do
-    expect(rendered).to have_selector('span', text: repo.rating)
+    expect(rendered).to have_selector('span', text: rating)
   end
 
   it 'should display last commit info' do
@@ -39,7 +42,7 @@ describe 'repository/show.html.erb', type: :view do
 
   context 'with a last commit that has no message' do
     let(:commit) do
-      Commit.new('sha-12345', 'joe bloggs', time_days_ago(7), '')
+      Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), '')
     end
 
     it 'should not display any message or indication of' do

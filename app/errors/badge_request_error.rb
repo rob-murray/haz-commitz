@@ -1,2 +1,1 @@
-class BadgeRequestError < StandardError
-end
+BadgeRequestError = Class.new(StandardError)

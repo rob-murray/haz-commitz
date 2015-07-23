@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.2.2'
 
 gem 'rails', '4.1.9'
 
@@ -18,7 +18,6 @@ gem 'unicorn'
 gem 'rollbar'
 
 gem 'virtus'
-gem 'values'
 
 group :staging, :production do
   gem 'rails_12factor'
@@ -34,6 +33,11 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'paratrooper' # wrapper for deploying to heroku
+  gem 'awesome_print'
+  gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-rescue'
+  gem 'pry-byebug'
 end
 
 # Application specific
