@@ -14,7 +14,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-gem 'unicorn'
+gem 'puma'
 gem 'rollbar'
 
 gem 'virtus'
