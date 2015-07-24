@@ -5,10 +5,6 @@ class RepositoryController < ApplicationController
   rescue_from Octokit::Unauthorized, with: :repository_not_authorised
   rescue_from Octokit::TooManyRequests, with: :over_api_limit
 
-  def index
-    redirect_to root_url
-  end
-
   def show
     @repo = fetch_and_rate_repo
 

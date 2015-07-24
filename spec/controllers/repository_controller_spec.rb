@@ -1,18 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe RepositoryController, type: :controller do
-  context 'given a request with repos path' do
-    before { get :index }
-
-    it 'responds with redirect' do
-      expect(response).to be_redirect
-    end
-
-    it 'redirects to root view' do
-      expect(response).to redirect_to(root_url)
-    end
-  end
-
   context 'given a request with repo owner and name' do
     let(:repo) do
       repo = Repository.from_owner_and_name('owner_name', 'repo_name')
