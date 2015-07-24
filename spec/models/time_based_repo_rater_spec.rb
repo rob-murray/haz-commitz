@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe TimeBasedRepoRater do
-  subject { TimeBasedRepoRater.new(repo) }
+  subject { TimeBasedRepoRater.new }
 
   describe '#rate' do
     context 'invalid repo' do
       let(:repo) { nil }
 
       it 'should rate minimum value' do
-        expect(subject.rate).to eq(0)
+        expect(subject.rate(repo)).to eq(0)
       end
     end
 
@@ -21,7 +21,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate minimum value' do
-        expect(subject.rate).to eq(0)
+        expect(subject.rate(repo)).to eq(0)
       end
 
     end
@@ -35,7 +35,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate minimum value' do
-        expect(subject.rate).to eq(0)
+        expect(subject.rate(repo)).to eq(0)
       end
     end
 
@@ -48,7 +48,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate maximum value' do
-        expect(subject.rate).to eq(10)
+        expect(subject.rate(repo)).to eq(10)
       end
     end
 
@@ -61,7 +61,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate maximum value' do
-        expect(subject.rate).to eq(10)
+        expect(subject.rate(repo)).to eq(10)
       end
     end
 
@@ -74,7 +74,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate something high' do
-        expect(subject.rate).to eq(8)
+        expect(subject.rate(repo)).to eq(8)
       end
     end
 
@@ -87,7 +87,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate high-med' do
-        expect(subject.rate).to eq(6)
+        expect(subject.rate(repo)).to eq(6)
       end
     end
 
@@ -100,7 +100,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate low-med' do
-        expect(subject.rate).to eq(4)
+        expect(subject.rate(repo)).to eq(4)
       end
     end
 
@@ -113,7 +113,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate something low' do
-        expect(subject.rate).to eq(2)
+        expect(subject.rate(repo)).to eq(2)
       end
     end
 
@@ -126,7 +126,7 @@ describe TimeBasedRepoRater do
       end
 
       it 'should rate minimum value' do
-        expect(subject.rate).to eq(1)
+        expect(subject.rate(repo)).to eq(1)
       end
     end
   end

@@ -1,7 +1,7 @@
 require_relative 'repo_rater'
 
 class TimeBasedRepoRater < RepoRater.rating_klass
-  def rate
+  def rate(repo)
     time_now = Time.zone.now
     return min if repo.nil?
 

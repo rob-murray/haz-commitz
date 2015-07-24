@@ -1,7 +1,7 @@
 class RepoRater
   class << self
     def build(repo, rating_klasses = default)
-      raters = Array(rating_klasses).map { |klass| klass.new(repo) }
+      raters = Array(rating_klasses).map { |klass| klass.new }
       new(repo).rate_with(raters)
     end
 
@@ -28,7 +28,7 @@ class RepoRater
   end
 
   def rate
-    total = raters_or_default.sum(&:rate)
+    total = raters_or_default.map{ |rater| rater.rate(repo) }.sum
 
     mean_avg(total)
   end
@@ -38,7 +38,7 @@ class RepoRater
   attr_reader :repo, :raters
 
   def raters_or_default
-    @raters_or_default ||= raters.empty? ? Array(BaseRater.new(repo)) : raters
+    @raters_or_default ||= raters.empty? ? Array(BaseRater.new) : raters
   end
 
   def mean_avg(total)
@@ -46,11 +46,7 @@ class RepoRater
   end
 
   class BaseRater
-    def initialize(repo)
-      @repo = repo
-    end
-
-    def rate
+    def rate(repo)
       Rails.logger.warn 'This is the default method and should be implemented in subclass'
 
       min
