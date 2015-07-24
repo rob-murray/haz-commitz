@@ -36,5 +36,4 @@ class Repository
     self.rating = rater.build(self).rate
     self
   end
-
 end

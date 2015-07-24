@@ -4,7 +4,6 @@ describe TimeBasedRepoRater do
   subject { TimeBasedRepoRater.new(repo) }
 
   describe '#rate' do
-
     context 'invalid repo' do
       let(:repo) { nil }
 
