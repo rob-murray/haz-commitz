@@ -10,7 +10,7 @@ class RepoRater
     end
 
     def rating_klass
-      RepoRater::Rater
+      RepoRater::BaseRater
     end
   end
 
@@ -33,7 +33,19 @@ class RepoRater
     mean_avg(total)
   end
 
-  class Rater
+  private
+
+  attr_reader :repo, :raters
+
+  def raters_or_default
+    @raters_or_default ||= raters.empty? ? Array(BaseRater.new(repo)) : raters
+  end
+
+  def mean_avg(total)
+    total / raters_or_default.size
+  end
+
+  class BaseRater
     def initialize(repo)
       @repo = repo
     end
@@ -55,17 +67,5 @@ class RepoRater
     def max
       MAX
     end
-  end
-
-  private
-
-  attr_reader :repo, :raters
-
-  def raters_or_default
-    @raters_or_default ||= raters.empty? ? Array(Rater.new(repo)) : raters
-  end
-
-  def mean_avg(total)
-    total / raters_or_default.size
   end
 end
