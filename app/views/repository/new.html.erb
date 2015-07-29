@@ -1,34 +1,29 @@
 <% provide(:title, 'Add repository / Haz Commitz') %>
 
-<div class="container" id="new">
-    <h3>Add Repository</h3>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+  <div class="haz-commitz-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+    <h3>Rate Repository</h3>
 
-    <div class="row">
+    <div class="mdl-cell--12-col mdl-grid">
+      <p>Get a Haz Commitz rating and badge about your GitHub repository entering your GitHub user name and repo name.</p>
 
-        <div class="col-md-6 col-md-offset-3">
-
-            <p>Get a Haz Commitz rating about your GitHub repository and get a badge by telling us the repo name.</p>
-
-            <% if flash[:error] %>
-                <div class="alert alert-warning">
-                    <p><%= flash[:error] %></p>
-                </div>
-            <% end %>
-
-            <%= form_for @repo, url: {action: 'create'} do |f| %>
-                <div class="form-group">
-                  <%= f.label :path, 'GitHub repo name' %>
-                  <%= f.text_field :path, class: 'form-control', placeholder: 'Enter GitHub repository: user-name/repository-name', autofocus: true, value: '' %>
-                </div>
-
-                <%= f.submit 'Submit', class: 'btn btn-primary' %>
-            <% end %>
-
+      <% if flash[:error] %>
+        <div class="form-errors">
+          <p><%= flash[:error] %></p>
         </div>
+      <% end %>
+
+      <div class="form-container">
+        <%= form_for @repo, url: {action: 'create'} do |f| %>
+          <div class="mdl-textfield mdl-js-textfield repo-input-container">
+            <%= f.text_field :path, class: 'mdl-textfield__input', autofocus: true, value: '' %>
+            <%= f.label :path, 'Enter GitHub repository: user-name/repository-name', class: 'mdl-textfield__label' %>
+          </div>
+          <br>
+          <%= f.submit 'Rate', class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' %>
+        <% end %>
+      </div>
     </div>
-
-    <hr>
-
-    <%= render 'shared/footer' %>
-
-</div> <!-- /container -->
+  </div>
+</div>

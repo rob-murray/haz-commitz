@@ -31,7 +31,7 @@ describe 'repository/show.html.erb', type: :view do
 
   it 'should display last commit info' do
     expect(rendered).to have_content(commit.author_name)
-    expect(rendered).to have_content(commit.sha)
+    expect(rendered).to have_content(commit.sha.last(7))
     expect(rendered).to have_content(commit.date)
     expect(rendered).to have_content(commit.message)
   end

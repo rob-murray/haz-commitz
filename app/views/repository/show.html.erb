@@ -1,62 +1,56 @@
 <% provide(:title, "#{@repo.path} rating / Haz Commitz") %>
 
-<div class="container" id="repo">
-    <h3>Repository</h3>
-    <div class="well well-lg">
-        <h4><%= @repo.owner %> / <%= @repo.name %>
-          <%= render partial: 'github_repo_link', locals: { path: @repo.path } %></h4>
-
-        <p>Haz Commitz rating: <span id="rating" class="badge"><%= @letter_rating %></span></p>
-    </div>
-
-    <h4>Last commit</h4>
-    <div class="row">
-
-        <div class="col-md-6 col-md-offset-3">
-            <table class="table table-bordered">
-                <thead></thead>
-                <tbody>
-                    <tr>
-                        <th>SHA</th>
-                        <td><%= @repo.latest_commit.sha %></td>
-                    </tr>
-                    <tr>
-                        <th>Author</th>
-                        <td><%= @repo.latest_commit.author_name %></td>
-                    </tr>
-                    <tr>
-                        <th>Commit time</th>
-                        <td><%= @repo.latest_commit.date %> (<%= time_ago_in_words(@repo.latest_commit.date) %> ago)</td>
-                    </tr>
-<% unless @repo.latest_commit.message.empty? %>
-                    <tr>
-                        <th>Message</th>
-                        <td><%= h @repo.latest_commit.message %></td>
-                    </tr>
-<% end %>
-                </tbody>
-            </table>
+<div class="repo-show mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+  <div class="mdl-cell mdl-cell--8-col">
+    <section class="rating-panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+      <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+        <span class="rating-letter large"><%= @letter_rating %></span>
+      </header>
+      <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+        <div class="mdl-card__supporting-text">
+          <h4><%= @repo.owner %> / <%= @repo.name %></h4>
+          <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" />
         </div>
-
-    </div><!-- /.row -->
-
-    <h4>Badge</h4>
-    <div class="row">
-
-        <div class="col-md-6 col-md-offset-3">
-
-            <p>Add a badge to your README by copying one of the following snippets.</p>
-
-            <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" />
-
-            <%= render partial: 'badge_link_templates', locals: { owner: @repo.owner, name: @repo.name } %>
-
+        <div class="mdl-card__actions">
+          <%= link_to "https://github.com/#{@repo.path}", title: "View #{@repo.path} repo on GitHub.com", class: "mdl-button" do %>
+            <%= @repo.owner %> / <%= @repo.name %> <%= image_tag('github.png') %>
+          <% end %>
         </div>
+      </div>
+    </section>
 
-    </div><!-- /.row -->
+    <section class="rating-panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+      <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+          <h4 class="mdl-cell mdl-cell--12-col">Commitz</h4>
+          <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-phone">
+            <i class="material-icons md-48">code</i>
+          </div>
+          <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+            <h5><%= h @repo.latest_commit.message %></h5>
+            <%= @repo.latest_commit.author_name %> - <%= @repo.latest_commit.date %> (<%= time_ago_in_words(@repo.latest_commit.date) %> ago)
+          </div>
+          <div class="section__text mdl-cell mdl-cell--1-col-desktop mdl-cell--3-col-tablet mdl-cell--2-col-phone">
+            <%= @repo.latest_commit.sha.last(7) %>
+          </div>
+        </div>
+        <div class="mdl-card__actions">
+          <a href="#" class="mdl-button">More</a>
+        </div>
+      </div>
+    </section>
 
-    <hr>
+    <section class="rating-panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+      <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text">
+          <h4>Badges</h4>
+          Add a badge to your README by copying one of the following snippets.
 
-    <%= render 'shared/footer' %>
+          <%= render partial: 'badge_link_templates', locals: { owner: @repo.owner, name: @repo.name } %>
+        </div>
+      </div>
+    </section>
+  </div>
 
-</div> <!-- /container -->
+</div>

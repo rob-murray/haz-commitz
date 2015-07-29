@@ -1,3 +1,136 @@
 // Place all the styles related to the repository controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.haz-commitz-content h3 {
+  padding: 40px 28px;
+}
+
+.form-container, .repo-input-container {
+  width: 100%;
+}
+
+.form-errors {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: red;
+}
+
+.rating-panel {
+  margin-top: 20px;
+}
+
+.repo-show .mdl-card {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.repo-show .mdl-card > * {
+  height: auto;
+}
+.repo-show .mdl-card .mdl-card__supporting-text {
+  margin: 40px;
+  flex-grow: 1;
+  padding: 0;
+  color: inherit;
+  width: calc(100% - 80px);
+}
+.repo-show.repo-show .mdl-card__supporting-text h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.repo-show .mdl-card__actions {
+  margin: 0;
+  padding: 4px 40px;
+  color: inherit;
+}
+.repo-show .mdl-card__actions a {
+  color: #00BCD4;
+  margin: 0;
+}
+.repo-show .mdl-card__actions a:hover,
+.repo-show .mdl-card__actions a:active {
+  color: inherit;
+  background-color: transparent;
+}
+.repo-show .mdl-card__supporting-text + .mdl-card__actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+
+.repo-show #add {
+  position: absolute;
+  right: 40px;
+  top: 36px;
+  z-index: 999;
+}
+
+.repo-show .mdl-layout__content section:not(:last-of-type) {
+  position: relative;
+  margin-bottom: 48px;
+}
+.repo-show section.section--center {
+  max-width: 860px;
+}
+.repo-show #features section.section--center {
+  max-width: 620px;
+}
+.repo-show section > header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.repo-show section > .section__play-btn {
+  min-height: 200px;
+}
+.repo-show section > header > .material-icons {
+  font-size: 3rem;
+}
+.repo-show section > button {
+  position: absolute;
+  z-index: 99;
+  top: 8px;
+  right: 8px;
+}
+.repo-show section .section__circle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+.repo-show section .section__text {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+.repo-show section .section__text h5 {
+  font-size: inherit;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+.repo-show section .section__text a {
+  text-decoration: none;
+}
+.repo-show section .section__circle-container > .section__circle-container__circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  margin: 8px 0;
+}
+.repo-show section.section--footer .section__circle--big {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 8px 32px;
+}
+.repo-show .is-small-screen section.section--footer .section__circle--big {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 8px 16px;
+}
+
+
+

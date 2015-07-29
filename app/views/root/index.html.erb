@@ -1,37 +1,18 @@
 <% provide(:title, 'Haz Commitz / Service headline here') %>
 
-<div class="jumbotron">
-  <div class="container">
-    <p>A GitHub badge service conveying how recently a project has been worked on</p>
-    <p><%= link_to 'View example: rob-murray/haz-commitz', repository_path(user_id: 'rob-murray', id: 'haz-commitz'), title: 'Show example of this application for the rob-murray/haz-commitz repo', class: 'btn btn-primary btn-large', role: 'button' %></p>
+<div class="root-section">
+  <div class="root-section-content">
+    <div class="root-section-content-text">
+      <div class="mdl-typography--display-2 mdl-typography--font-thin">A GitHub repository rating service</div>
+      <p class="mdl-typography--headline mdl-typography--font-thin">
+        A GitHub badge service conveying how recently a project has been worked on and rating it.
+      </p>
+      <p>
+        <%= link_to repository_path(user_id: 'rob-murray', id: 'haz-commitz'), title: 'Show example of this application for the rob-murray/haz-commitz repo', class: 'mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link', role: 'button' do %>
+          View example: rob-murray/haz-commitz
+          <i class="material-icons">chevron_right</i>
+        <% end %>
+      </p>
+    </div>
   </div>
 </div>
-
-<div class="container" id="root">
-
-  <h3>Features / Why</h3>
-
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Why</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-
-    <div class="col-md-4">
-      <h2>How</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Do it!</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-  </div>
-
-  <hr>
-
-  <%= render 'shared/footer' %>
-
-</div> <!-- /container -->

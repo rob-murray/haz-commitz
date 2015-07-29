@@ -1,22 +1,24 @@
 <div id="badge-link-grp">
-    <div class="badge-link">
-        <h4>Markdown</h4>
-        <form role="form">
-            <textarea class="form-control" rows="3" readonly>[![Haz Commitz Status](<%= repository_url(user_id: owner, id: name, format: :svg) %>)](<%= repository_url(user_id: owner, id: name) %>)</textarea>
-        </form>
-    </div>
+  <div class="badge-link">
+      <h5>Markdown</h5>
+      <code>
+        [![Haz Commitz Status](<%= repository_url(user_id: owner, id: name, format: :svg) %>)](<%= repository_url(user_id: owner, id: name) %>)
+      </code>
+  </div>
 
-    <div class="badge-link">
-        <h4>RDOC</h4>
-        <form role="form">
-            <textarea class="form-control" rows="3" readonly>{<img src="<%= repository_url(user_id: owner, id: name, format: :svg) %>" alt="Haz Commitz Status" />}[<%= repository_url(user_id: owner, id: name) %>]</textarea>
-        </form>
-    </div>
+  <div class="badge-link">
+    <h5>RDOC</h5>
+    <% snippet = capture do %>
+      {<img src="<%= repository_url(user_id: owner, id: name, format: :svg) %>" alt="Haz Commitz Status" />}[<%= repository_url(user_id: owner, id: name) %>]
+    <% end %>
+    <code><%= escape_once snippet %></code>
+  </div>
 
-    <div class="badge-link">
-        <h4>HTML</h4>
-        <form role="form">
-            <textarea class="form-control" rows="3" readonly><a href="<%= repository_url(user_id: owner, id: name) %>"><img src="<%= repository_url(user_id: owner, id: name, format: :svg) %>" /></a></textarea>
-        </form>
-    </div>
+  <div class="badge-link">
+    <h5>HTML</h5>
+    <% snippet = capture do %>
+      <a href="<%= repository_url(user_id: owner, id: name) %>"><img src="<%= repository_url(user_id: owner, id: name, format: :svg) %>" /></a>
+    <% end %>
+    <code><%= escape_once snippet %></code>
+  </div>
 </div>
