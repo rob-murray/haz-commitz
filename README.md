@@ -6,9 +6,11 @@
 [![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
 
 
-### A GitHub badge service conveying how recently a project has been worked on - Proof of concept at the moment!
+### A GitHub badge service conveying how recently a project has been worked on
 
 Frustrated at having to check whether a GitHub repository has had any commits recently, is it still maintained and can you use it? If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained.
+
+> Experitmental project - may get trashed at any point.
 
 Here it is; [Haz Commitz](http://haz-commitz.herokuapp.com)
 
@@ -44,11 +46,11 @@ Checkout the repository's `Haz Commitz` badge and make a judgment.
 
 Click the badge and come through to our site for some more info about the repository and how we have rated it.
 
-Do you want to use a repository that has not had any commits in 2 years? Maybe. Depending on the repo and use case but maybe not.
+Do you want to use a repository that has not had any commits in 2 years? Maybe. Or maybe not depending on the repo and use case.
 
 ### How we work out if the project is maintained
 
-In proof of concept version we simply ask GitHub API when the last commit to the master branch was and then give the repository an un-scientific rating based on when this date.
+In the proof of concept version we simply ask GitHub API when the last commit to the master branch was and then give the repository an un-scientific rating based on this date but we would add more factors in future.
 
 ## Build, Test, & Run
 
