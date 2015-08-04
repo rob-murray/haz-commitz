@@ -11,6 +11,7 @@ class RepositoryController < ApplicationController
     respond_to do |format|
       format.html do
         @letter_rating = letter_for_rating(@repo.rating)
+        @rating_klasses = rating_klasses
       end
       format.svg do
         badge = badge_for_rating(@repo.rating)
@@ -72,7 +73,7 @@ class RepositoryController < ApplicationController
 
   def fetch_and_rate_repo
     repo = Repository.from_owner_and_name(params[:user_id], params[:id])
-    GithubRepo.new(repo, github_client).rate_with(RepoRater)
+    GithubRepo.new(repo, github_client).rate_with(RepoRater, rating_klasses)
   end
 
   def github_client
@@ -85,5 +86,9 @@ class RepositoryController < ApplicationController
 
   def letter_for_rating(rating)
     LetterRatingPresenter.new(rating).letter
+  end
+
+  def rating_klasses
+    [TimeBasedRepoRater, CommitCountRater]
   end
 end

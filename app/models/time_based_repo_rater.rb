@@ -1,6 +1,11 @@
 require_relative 'repo_rater'
 
 class TimeBasedRepoRater < RepoRater.rating_klass
+
+  def self.description
+    "How recent the last commit time was"
+  end
+
   def rate(repo)
     time_now = Time.zone.now
     return min if repo.nil?

@@ -9,8 +9,16 @@
       </header>
       <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
         <div class="mdl-card__supporting-text">
-          <h4><%= @repo.owner %> / <%= @repo.name %></h4>
-          <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" />
+          <h4><%= @repo.owner %> / <%= @repo.name %> <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" /></h4>
+
+          How we rated this repo:
+
+          <ul>
+            <% @rating_klasses.each do |rater| %>
+              <li><%= rater.description %></li>
+            <% end %>
+          </ul>
+
         </div>
         <div class="mdl-card__actions">
           <%= link_to "https://github.com/#{@repo.path}", title: "View #{@repo.path} repo on GitHub.com", class: "mdl-button" do %>
@@ -27,12 +35,14 @@
           <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-phone">
             <i class="material-icons md-48">code</i>
           </div>
-          <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-            <h5><%= h @repo.latest_commit.message %></h5>
-            <%= @repo.latest_commit.author_name %> - <%= @repo.latest_commit.date %> (<%= time_ago_in_words(@repo.latest_commit.date) %> ago)
-          </div>
-          <div class="section__text mdl-cell mdl-cell--1-col-desktop mdl-cell--3-col-tablet mdl-cell--2-col-phone">
-            <%= @repo.latest_commit.sha.last(7) %>
+          <% if @repo.commits.any? %>
+            <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+              <h5><%= h @repo.latest_commit.message %></h5>
+              <%= @repo.latest_commit.author_name %> - <%= @repo.latest_commit.date %> (<%= time_ago_in_words(@repo.latest_commit.date) %> ago)
+            </div>
+            <div class="section__text mdl-cell mdl-cell--1-col-desktop mdl-cell--3-col-tablet mdl-cell--2-col-phone">
+              <%= @repo.latest_commit.sha.last(7) %>
+            <% end %>
           </div>
         </div>
         <div class="mdl-card__actions">

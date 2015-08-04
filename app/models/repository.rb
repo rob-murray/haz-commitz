@@ -29,7 +29,7 @@ class Repository
   end
 
   def latest_commit_date
-    latest_commit.date
+    latest_commit.date if commits.any?
   end
 
   def rate_with(rater, rating_klasses)

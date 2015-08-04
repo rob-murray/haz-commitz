@@ -12,10 +12,12 @@ describe 'repository/show.html.erb', type: :view do
   end
 
   let(:rating) { "X" }
+  let(:rating_klass) { double("Rater", description: "Hello world") }
 
   before do
     assign(:repo, repo)
     assign(:letter_rating, rating)
+    assign(:rating_klasses, [rating_klass])
 
     render
   end
@@ -38,6 +40,10 @@ describe 'repository/show.html.erb', type: :view do
 
   it 'should display image with badge' do
     expect(rendered).to have_xpath("//img[@src='/repos/#{repo.owner}/#{repo.name}.svg']")
+  end
+
+  it 'should display rating description' do
+    expect(rendered).to have_content("Hello world")
   end
 
   context 'with a last commit that has no message' do
