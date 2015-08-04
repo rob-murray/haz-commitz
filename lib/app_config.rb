@@ -22,7 +22,7 @@ module AppConfig
     attr_accessor :badge_version
 
     def initialize
-      @badge_version = "VERSION_001"
+      @badge_version = "VERSION_002"
     end
   end
 end
