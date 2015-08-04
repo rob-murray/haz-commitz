@@ -17,7 +17,7 @@ class GithubRepo < SimpleDelegator
   end
 
   def latest_commits(repo_path, branch = 'master')
-    api_client.list_commits(repo_path, branch).map do |api_response|
+    api_client.list_commits(repo_path, branch, max_commit_date).map do |api_response|
       Commit.build(
         api_response.sha,
         api_response.commit.author.name,
@@ -25,5 +25,9 @@ class GithubRepo < SimpleDelegator
         api_response.commit.message
       )
     end
+  end
+
+  def max_commit_date
+    Time.zone.now - 6.months
   end
 end
