@@ -13,8 +13,8 @@ class GithubAdapter
     @client = Octokit::Client.new(access_token: token)
   end
 
-  def list_commits(repo_path, branch)
-    # https://developer.github.com/v3/repos/commits/#list-commits-on-a-repository
-    @client.list_commits(repo_path, sha: branch)
+  def list_commits(repo_path, branch, since)
+    # https://github.com/octokit/octokit.rb/blob/07036916bfb42e98a0627616aeabc68582296737/lib/octokit/client/commits.rb#L48
+    @client.commits_since(repo_path, since, sha: branch)
   end
 end

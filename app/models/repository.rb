@@ -29,11 +29,11 @@ class Repository
   end
 
   def latest_commit_date
-    latest_commit.date
+    latest_commit.date if commits.any?
   end
 
-  def rate_with(rater)
-    self.rating = rater.build(self).rate
+  def rate_with(rater, rating_klasses)
+    self.rating = rater.build(self, rating_klasses).rate
     self
   end
 end
