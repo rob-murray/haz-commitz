@@ -78,27 +78,28 @@ RSpec.describe Repository do
 
   describe '#rate_with' do
     let(:rating_strategy) { double('rating_strategy') }
+    let(:rating_klasses) { [] }
 
     context 'with rating strategy' do
       it 'should build rater with repo' do
         allow(rating_strategy).to receive(:rate).and_return(1)
-        expect(rating_strategy).to receive(:build).with(subject).and_return(rating_strategy)
+        expect(rating_strategy).to receive(:build).with(subject, rating_klasses).and_return(rating_strategy)
 
-        subject.rate_with(rating_strategy)
+        subject.rate_with(rating_strategy, rating_klasses)
       end
 
       it 'should ask rater for value' do
-        allow(rating_strategy).to receive(:build).with(subject).and_return(rating_strategy)
+        allow(rating_strategy).to receive(:build).with(subject, rating_klasses).and_return(rating_strategy)
         expect(rating_strategy).to receive(:rate).and_return(1)
 
-        subject.rate_with(rating_strategy)
+        subject.rate_with(rating_strategy, rating_klasses)
       end
 
       it 'should apply rating to Repository' do
-        allow(rating_strategy).to receive(:build).with(subject).and_return(rating_strategy)
+        allow(rating_strategy).to receive(:build).with(subject, rating_klasses).and_return(rating_strategy)
         allow(rating_strategy).to receive(:rate).and_return(10)
 
-        subject.rate_with(rating_strategy)
+        subject.rate_with(rating_strategy, rating_klasses)
         expect(subject.rating).to eq(10)
       end
     end

@@ -32,8 +32,8 @@ class Repository
     latest_commit.date
   end
 
-  def rate_with(rater)
-    self.rating = rater.build(self).rate
+  def rate_with(rater, rating_klasses)
+    self.rating = rater.build(self, rating_klasses).rate
     self
   end
 end

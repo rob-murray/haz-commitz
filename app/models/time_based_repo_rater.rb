@@ -5,13 +5,11 @@ class TimeBasedRepoRater < RepoRater.rating_klass
     time_now = Time.zone.now
     return min if repo.nil?
 
-    last_commit_time = repo.latest_commit_date
-
-    if last_commit_time.nil? || !last_commit_time.is_a?(Time) # catch when not Time object?
+    unless repo.latest_commit_date.present? && repo.latest_commit_date.is_a?(Time)
       return min
     end
 
-    rating = case (time_now.to_date - last_commit_time.to_date).round
+    rating = case (time_now.to_date - repo.latest_commit_date.to_date).round
              when 0..7 then max
              when 8..30 then 8
              when 31..90 then 6

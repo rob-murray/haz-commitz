@@ -1,12 +1,8 @@
 class RepoRater
   class << self
-    def build(repo, rating_klasses = default)
+    def build(repo, rating_klasses)
       raters = Array(rating_klasses).map { |klass| klass.new }
       new(repo).rate_with(raters)
-    end
-
-    def default
-      TimeBasedRepoRater
     end
 
     def rating_klass
