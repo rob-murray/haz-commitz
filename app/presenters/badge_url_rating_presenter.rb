@@ -1,5 +1,5 @@
 class BadgeUrlRatingPresenter
-  BASE_URI = "http://img.shields.io/badge/".freeze
+  BASE_URI = "https://img.shields.io/badge/".freeze
   SUBJECT = "Haz%20Commitz".freeze
   SEPARATOR = "-".freeze
   FORMAT = ".svg?style=flat".freeze
