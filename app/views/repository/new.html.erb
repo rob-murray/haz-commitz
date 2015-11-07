@@ -1,29 +1,38 @@
-<% provide(:title, 'Add repository / Haz Commitz') %>
+<% provide(:title, 'Rate repository / Haz Commitz') %>
 
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-  <div class="haz-commitz-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-    <h3>Rate Repository</h3>
+<div class="container">
+  <div class="section">
 
-    <div class="mdl-cell--12-col mdl-grid">
-      <p>Get a Haz Commitz rating and badge about your GitHub repository entering your GitHub user name and repo name.</p>
+    <div class="row">
+      <div class="col s12">
+        <h3>Get a repository rating</h3>
 
-      <% if flash[:error] %>
-        <div class="form-errors">
-          <p><%= flash[:error] %></p>
-        </div>
-      <% end %>
+        <div class="row">
+          <div class="col s12">
+            <p>Get a Haz Commitz rating and badge about your GitHub repository entering your GitHub user name and repo name.</p>
 
-      <div class="form-container">
-        <%= form_for @repo, url: {action: 'create'} do |f| %>
-          <div class="mdl-textfield mdl-js-textfield repo-input-container">
-            <%= f.text_field :path, class: 'mdl-textfield__input', autofocus: true, value: '' %>
-            <%= f.label :path, 'Enter GitHub repository: user-name/repository-name', class: 'mdl-textfield__label' %>
+            <% if flash[:error] %>
+              <div class="form-errors">
+                <p><%= flash[:error] %></p>
+              </div>
+            <% end %>
+
+            <%= form_for @repo, url: { action: 'create' } do |f| %>
+              <div class="row">
+                <div class="input-field col s12">
+                  <%= f.text_field :path, autofocus: true, placeholder: "Enter GitHub repository: user-name/repository-name" %>
+                </div>
+                <div class="input-field col s12">
+                  <%= button_tag type: "submit", class: 'btn waves-effect blue darken-2' do %>
+                    Rate
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>
-          <br>
-          <%= f.submit 'Rate', class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' %>
-        <% end %>
+        </div>
       </div>
     </div>
+
   </div>
 </div>

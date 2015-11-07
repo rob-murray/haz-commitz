@@ -2,25 +2,3 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.root-section {
-  position: relative;
-  background-color: #767777;
-  background-size: cover;
-  height: 500px;
-}
-
-.root-section-content {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  background-color: #37474f;
-}
-
-.root-section-content-text {
-  max-width: 800px;
-  margin-left: 25%;
-  padding: 24px;
-  text-align: left;
-  color: white;
-}

@@ -1,0 +1,14 @@
+<div class="row commit">
+  <div class="col s6 m3 l1">
+    <h2 class="center blue-text darken-2"><i class="medium material-icons">code</i></h2>
+  </div>
+
+  <div class="col s12 m12 l9">
+    <h5><%= h commit.message %></h5>
+    <p><%= commit.author_name %> - <%= commit.date %> (<%= time_ago_in_words(commit.date) %> ago)</p>
+  </div>
+
+  <div class="col s12 m6 l2">
+    <%= h commit.sha.last(7) %>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-## Haz Commitz?!
+## Haz Commitz?! GitHub repository rating service
 
 [![Build Status](https://travis-ci.org/rob-murray/haz-commitz.svg?branch=master)](https://travis-ci.org/rob-murray/haz-commitz)
 [![Code Climate](https://codeclimate.com/github/rob-murray/haz-commitz.png)](https://codeclimate.com/github/rob-murray/haz-commitz)
@@ -6,13 +6,16 @@
 [![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
 
 
-### A GitHub badge service conveying how recently a project has been worked on
+### A GitHub badge service displaying repository rating
 
-Frustrated at having to check whether a GitHub repository has had any commits recently, is it still maintained and can you use it? If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained.
+Having trouble deciding whether to use an open source project? Frustrated at having to check whether the project has had any commits recently, is it still maintained? Should you use it?
 
-> Experitmental project - may get trashed at any point.
+If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained based on the rating.
 
-Here it is; [Haz Commitz](http://haz-commitz.herokuapp.com)
+> Experitmental proof of concept project - may get trashed at any point.
+
+[Check it out now](http://haz-commitz.herokuapp.com)
+
 
 ## Usage
 
@@ -40,6 +43,7 @@ Simply just add a `Haz Commitz` badge to your repository README, we take care of
 
 Access your repository stats via a URL like `http://haz-commitz.herokuapp.com/repos/{owner}/{repository}`.
 
+
 ### Project user
 
 Checkout the repository's `Haz Commitz` badge and make a judgment.
@@ -48,9 +52,16 @@ Click the badge and come through to our site for some more info about the reposi
 
 Do you want to use a repository that has not had any commits in 2 years? Maybe. Or maybe not depending on the repo and use case.
 
-### How we work out if the project is maintained
 
-In the proof of concept version we simply ask GitHub API when the last commit to the master branch was and then give the repository an un-scientific rating based on this date but we would add more factors in future.
+### How we work out the rating
+
+In the proof of concept version we currently use two factors:
+
+* A rating from the last commit date to `master`
+* The number of commits to `master` in the past six months
+
+Very un-scientific rating based on this data but we would add more factors in future.
+
 
 ## Build, Test, & Run
 
@@ -80,6 +91,7 @@ It needs an environment variable containing a [GitHub API OAuth token](https://d
 $ heroku config:set GITHUB_TOKEN=<API TOKEN HERE>
 $ git push heroku master
 ```
+
 
 ## Contributions
 

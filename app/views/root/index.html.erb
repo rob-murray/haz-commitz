@@ -1,18 +1,68 @@
-<% provide(:title, 'Haz Commitz / Service headline here') %>
+<% provide(:title, 'Haz Commitz / A GitHub badge service displaying repository rating') %>
 
-<div class="root-section">
-  <div class="root-section-content">
-    <div class="root-section-content-text">
-      <div class="mdl-typography--display-2 mdl-typography--font-thin">A GitHub repository rating service</div>
-      <p class="mdl-typography--headline mdl-typography--font-thin">
-        A GitHub badge service conveying how recently a project has been worked on and rating it.
-      </p>
-      <p>
-        <%= link_to repository_path(user_id: 'rob-murray', id: 'haz-commitz'), title: 'Show example of this application for the rob-murray/haz-commitz repo', class: 'mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link', role: 'button' do %>
-          View example: rob-murray/haz-commitz
-          <i class="material-icons">chevron_right</i>
-        <% end %>
-      </p>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center blue-text darken-2">GitHub repository rating badge service</h1>
+
+    <div class="row center">
+      <h5 class="header col s12 light">Show a rating for your repository on the README displaying the maintenance status of the project.</h5>
     </div>
+
+    <div class="row center">
+      <%= link_to repository_path(user_id: 'rob-murray', id: 'haz-commitz'), title: 'Show example of this application for the rob-murray/haz-commitz repo', class: 'btn-large waves-effect waves-light blue darken-2', role: 'button' do %>
+        View example: haz-commitz
+      <% end %>
+    </div>
+    <br><br><br>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center blue-text darken-2"><i class="material-icons">help_outline</i></h2>
+          <h5 class="center">Why</h5>
+
+          <p class="light">Having trouble deciding whether to use an open source project? Frustrated at having to check whether the project has had any commits recently, is it still maintained? Should you use it?</p>
+
+          <p class="light">If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained based on the rating.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center blue-text darken-2"><i class="material-icons">view_list</i></h2>
+          <h5 class="center">How do we rate repositories?</h5>
+
+          <p class="light">
+            In the current proof of concept BETA version we currently use two factors:
+
+            <ul>
+              <li>A rating from the last commit date to <code>master</code></li>
+              <li>The number of commits to <code>master</code> in the past six months</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center blue-text darken-2"><i class="material-icons">grade</i></h2>
+          <h5 class="center">Rate a repository</h5>
+
+          <h6>Project owner</h6>
+          <p class="light">Display a badge with the Haz Commitz rating on your README.<br><%= link_to "Rate your repository", new_repository_path %></p>
+
+          <h6>Project user</h6>
+          <p class="light">Check out the Haz Commitz of the repository you are thinking of using here.<br><%= link_to "Rate the repository", new_repository_path %></p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Tell me why I should use this.">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <meta name="description" content="A GitHub badge service displaying repository rating.">
     <meta name="author" content="rob-murray">
     <title><%= yield :title %></title>
 
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-deep_orange.min.css" />
+    <!-- CSS  -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag "application", media: "all" %>
 
-<%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
   </head>
-
   <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <%= link_to 'Haz Commitz?!', root_url, class: 'mdl-layout-title' %>
-          <div class="mdl-layout-spacer"></div>
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="/repos/new">Rate repository</a>
-          </nav>
-        </div>
-      </header>
+    <nav class="green" role="navigation">
+      <div class="nav-wrapper container">
+        <%= link_to "Haz Commitz?!", root_url, id: "logo-container", class: "brand-logo white-text" %>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <%= link_to "Rate repository", new_repository_path, class: "white-text" %>
+          </li>
+        </ul>
 
-      <main class="mdl-layout__content">
-        <a name="top"></a>
-        <div class="page-content">
+        <ul id="nav-mobile" class="side-nav">
+          <li>
+            <%= link_to "Rate repository", new_repository_path, class: "white-text" %>
+          </li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
 
-          <%= yield %>
+    <%= yield %>
 
-        </div>
+    <%= render "shared/footer" %>
 
-        <div class="mdl-layout-spacer"></div>
-      </main>
-      <%= render 'shared/footer' %>
-    </div>
-
-<%= javascript_include_tag 'application' %>
-<script src="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
-
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

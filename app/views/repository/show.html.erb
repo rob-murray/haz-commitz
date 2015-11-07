@@ -1,66 +1,72 @@
-<% provide(:title, "#{@repo.path} rating / Haz Commitz") %>
+<% provide(:title, "#{@repo.path} Haz Commitz rating") %>
 
-<div class="repo-show mdl-grid">
-  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-  <div class="mdl-cell mdl-cell--8-col">
-    <section class="rating-panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-      <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--deep-orange mdl-color-text--white">
-        <span class="rating-letter large"><%= @letter_rating %></span>
-      </header>
-      <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-        <div class="mdl-card__supporting-text">
-          <h4><%= @repo.owner %> / <%= @repo.name %> <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" /></h4>
+<div class="container">
+  <div class="section">
 
-          How we rated this repo:
+    <div class="row">
+      <div class="col s12">
 
-          <ul>
-            <% @rating_klasses.each do |rater| %>
-              <li><%= rater.description %></li>
-            <% end %>
-          </ul>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title green-text lighten-4">
+              <h4><%= @repo.owner %> / <%= @repo.name %> <img title="Haz Commitz badge for <%= @repo.path %>" src="<%= repository_path(user_id: @repo.owner, id: @repo.name, format: :svg) %>" /></h4>
+            </span>
 
-        </div>
-        <div class="mdl-card__actions">
-          <%= link_to "https://github.com/#{@repo.path}", title: "View #{@repo.path} repo on GitHub.com", class: "mdl-button" do %>
-            <%= @repo.owner %> / <%= @repo.name %> <%= image_tag('github.png') %>
-          <% end %>
-        </div>
-      </div>
-    </section>
+            <div class="row">
+              <div class="col s12 m6">
+                <p>
+                  How we rated this repo:
 
-    <section class="rating-panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-      <div class="mdl-card mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-          <h4 class="mdl-cell mdl-cell--12-col">Commitz</h4>
-          <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-phone">
-            <i class="material-icons md-48">code</i>
-          </div>
-          <% if @repo.commits.any? %>
-            <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-              <h5><%= h @repo.latest_commit.message %></h5>
-              <%= @repo.latest_commit.author_name %> - <%= @repo.latest_commit.date %> (<%= time_ago_in_words(@repo.latest_commit.date) %> ago)
+                  <ul>
+                    <% @rating_klasses.each do |rater| %>
+                      <li><%= rater.description %></li>
+                    <% end %>
+                  </ul>
+                </p>
+              </div>
+
+              <div class="col s12 m2 offset-m2">
+                <div class="card">
+                  <div class="card-content blue darken-2 white-text">
+                    <p class="center-align"><span class="rating-letter large"><%= @letter_rating %></span></p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="section__text mdl-cell mdl-cell--1-col-desktop mdl-cell--3-col-tablet mdl-cell--2-col-phone">
-              <%= @repo.latest_commit.sha.last(7) %>
+          </div>
+          <div class="card-action">
+            <%= link_to "https://github.com/#{@repo.path}", title: "View #{@repo.path} repo on GitHub.com" do %>
+              <%= @repo.owner %> / <%= @repo.name %> <%= image_tag("github.png") %>
             <% end %>
           </div>
         </div>
-        <div class="mdl-card__actions">
-          <a href="#" class="mdl-button">More</a>
-        </div>
-      </div>
-    </section>
 
-    <section class="rating-panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-      <div class="mdl-card mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text">
-          <h4>Badges</h4>
-          Add a badge to your README by copying one of the following snippets.
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title green-text lighten-4">Commitz</span>
 
-          <%= render partial: 'badge_link_templates', locals: { owner: @repo.owner, name: @repo.name } %>
+            <% if @repo.commits.any? %>
+              <%= render partial: "commit", locals: { commit: @repo.latest_commit } %>
+            <% end %>
+
+          </div>
+          <div class="card-action">
+            <a href="#">More</a>
+          </div>
         </div>
+
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title green-text lighten-4">Badges</span>
+
+            <p>Add a badge to your README by copying one of the following snippets.</p>
+
+            <%= render partial: "badge_link_templates", locals: { owner: @repo.owner, name: @repo.name } %>
+
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
   </div>
-
 </div>
