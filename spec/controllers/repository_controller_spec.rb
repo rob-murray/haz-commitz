@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe RepositoryController, type: :controller do
   context 'given a request with repo owner and name' do
     let(:repo) do
-      repo = Repository.from_owner_and_name('owner_name', 'repo_name')
-      repo.add_commit(commit)
-      repo
+      Repository.from_owner_and_name('owner_name', 'repo_name').tap do |repo|
+        repo.add_commit(commit)
+      end
     end
 
     let(:commit) do
@@ -194,6 +194,33 @@ RSpec.describe RepositoryController, type: :controller do
 
         it 'returns service unavailble status' do
           expect(response.status).to eq(500)
+        end
+
+        it 'returns an error image' do
+          # will treat this as an image test until that is actually fixed
+          expect(response.content_type).to include('image/svg+xml')
+        end
+      end
+    end
+
+    context 'when there is no latest commit' do
+      let(:repo) do
+        Repository.from_owner_and_name('owner_name', 'repo_name')
+      end
+
+      context 'html request' do
+        before { get :show, user_id: 'owner_name', id: 'repo_name' }
+
+        it 'returns valid response' do
+          expect(response.status).to eq(200)
+        end
+      end
+
+      context 'badge request' do
+        before { get :show, user_id: 'owner_name', id: 'repo_name', format: :svg }
+
+        it 'returns valid response' do
+          expect(response.status).to eq(200)
         end
 
         it 'returns an error image' do

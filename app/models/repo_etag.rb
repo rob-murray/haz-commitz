@@ -10,10 +10,14 @@ class RepoEtag
   end
 
   def etag
-    repository.latest_commit.sha
+    latest_commit_sha
   end
 
   private
 
   attr_reader :repository
+
+  def latest_commit_sha
+    repository.latest_commit.present? ? repository.latest_commit.sha : SecureRandom.hex
+  end
 end
