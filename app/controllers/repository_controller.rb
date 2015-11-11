@@ -1,17 +1,18 @@
 class RepositoryController < ApplicationController
-  rescue_from Exception, with: :something_went_wrong
-  rescue_from BadgeRequestError, with: :something_went_wrong
-  rescue_from Octokit::NotFound, with: :repository_not_found
-  rescue_from Octokit::Unauthorized, with: :repository_not_authorised
-  rescue_from Octokit::TooManyRequests, with: :over_api_limit
+  unless Rails.env.development?
+    rescue_from Exception, with: :something_went_wrong
+    rescue_from BadgeRequestError, with: :something_went_wrong
+    rescue_from Octokit::NotFound, with: :repository_not_found
+    rescue_from Octokit::Unauthorized, with: :repository_not_authorised
+    rescue_from Octokit::TooManyRequests, with: :over_api_limit
+  end
 
   def show
-    @repo = fetch_and_rate_repo
+    @repo = rated_repo
 
     respond_to do |format|
       format.html do
         @letter_rating = letter_for_rating(@repo.rating)
-        @rating_klasses = rating_klasses
       end
       format.svg do
         badge = badge_for_rating(@repo.rating)
@@ -71,9 +72,12 @@ class RepositoryController < ApplicationController
     end
   end
 
-  def fetch_and_rate_repo
-    repo = Repository.from_owner_and_name(params[:user_id], params[:id])
-    GithubRepo.new(repo, github_client).rate_with(RepoRater, rating_klasses)
+  def rated_repo
+    GithubRepo.new(repo_from_params, github_client)
+  end
+
+  def repo_from_params
+    Repository.from_owner_and_name(params[:user_id], params[:id])
   end
 
   def github_client

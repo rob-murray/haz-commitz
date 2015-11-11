@@ -43,3 +43,4 @@ end
 # Application specific
 gem 'octokit', '~> 3.1'
 gem 'faraday-http-cache'
+gem 'five-star'

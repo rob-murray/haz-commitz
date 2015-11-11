@@ -17,4 +17,9 @@ class GithubAdapter
     # https://github.com/octokit/octokit.rb/blob/07036916bfb42e98a0627616aeabc68582296737/lib/octokit/client/commits.rb#L48
     @client.commits_since(repo_path, since, sha: branch)
   end
+
+  def stars_count(repo_path)
+    # http://octokit.github.io/octokit.rb/Octokit/Client/Repositories.html#stargazers-instance_method
+    @client.stargazers(repo_path).size
+  end
 end

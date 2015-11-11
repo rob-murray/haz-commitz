@@ -14,6 +14,18 @@
  *= require_self
  */
 
+/*
+   Colour scheme
+  .dark-primary-color    { background: #388E3C; } green
+  .default-primary-color { background: #4CAF50; } blue darken-2
+  .light-primary-color   { background: #C8E6C9; } green lighten-4
+  .text-primary-color    { color: #FFFFFF; }
+  .accent-color          { background: #448AFF; }
+  .primary-text-color    { color: #212121; }
+  .secondary-text-color  { color: #727272; }
+  .divider-color         { border-color: #B6B6B6; }
+*/
+
 .icon-block {
   padding: 0 15px;
 }

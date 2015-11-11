@@ -1,10 +1,13 @@
 class Repository
   include Virtus.model
+  include FiveStar.rateable
+
+  rate_with LastCommitDateRater, CommitCountRater, StarCountRater
 
   attribute :commits, Array[Commit], default: []
-  attribute :rating, Integer, default: 0, writer: :private
   attribute :owner, String
   attribute :name, String
+  attribute :stars, Integer, default: 0
 
   class << self
     def from_owner_and_name(owner, name)
@@ -14,6 +17,10 @@ class Repository
 
   def persisted?
     false
+  end
+
+  def rating
+    super.round
   end
 
   def path
@@ -30,10 +37,5 @@ class Repository
 
   def latest_commit_date
     latest_commit.date if commits.any?
-  end
-
-  def rate_with(rater, rating_klasses)
-    self.rating = rater.build(self, rating_klasses).rate
-    self
   end
 end

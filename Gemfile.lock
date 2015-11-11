@@ -73,6 +73,7 @@ GEM
     faraday-http-cache (1.2.2)
       faraday (~> 0.8)
     ffi (1.9.10)
+    five-star (0.1.0)
     formatador (0.2.5)
     guard (2.13.0)
       formatador (>= 0.2.4)
@@ -265,6 +266,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   coveralls (~> 0.7)
   faraday-http-cache
+  five-star
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails

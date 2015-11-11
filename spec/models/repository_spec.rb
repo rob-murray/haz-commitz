@@ -12,10 +12,6 @@ RSpec.describe Repository do
       expect(subject.name).to eq('subject-name')
     end
 
-    it 'should initialize with zero rating' do
-      expect(subject.rating).to eq(0)
-    end
-
     it 'should not have any commits' do
       expect(subject.commits).to be_empty
     end
@@ -72,35 +68,6 @@ RSpec.describe Repository do
 
       it 'should return the latest commit date' do
         expect(subject.latest_commit_date).to eq(commit1.date)
-      end
-    end
-  end
-
-  describe '#rate_with' do
-    let(:rating_strategy) { double('rating_strategy') }
-    let(:rating_klasses) { [] }
-
-    context 'with rating strategy' do
-      it 'should build rater with repo' do
-        allow(rating_strategy).to receive(:rate).and_return(1)
-        expect(rating_strategy).to receive(:build).with(subject, rating_klasses).and_return(rating_strategy)
-
-        subject.rate_with(rating_strategy, rating_klasses)
-      end
-
-      it 'should ask rater for value' do
-        allow(rating_strategy).to receive(:build).with(subject, rating_klasses).and_return(rating_strategy)
-        expect(rating_strategy).to receive(:rate).and_return(1)
-
-        subject.rate_with(rating_strategy, rating_klasses)
-      end
-
-      it 'should apply rating to Repository' do
-        allow(rating_strategy).to receive(:build).with(subject, rating_klasses).and_return(rating_strategy)
-        allow(rating_strategy).to receive(:rate).and_return(10)
-
-        subject.rate_with(rating_strategy, rating_klasses)
-        expect(subject.rating).to eq(10)
       end
     end
   end

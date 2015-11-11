@@ -1,6 +1,6 @@
 # A repository model with the Github Api so it can fetch data
 #
-class GithubRepo < SimpleDelegator
+class GithubRepo < DelegateClass(Repository)
   def initialize(repo, api_client)
     @api_client = api_client
 
@@ -12,12 +12,14 @@ class GithubRepo < SimpleDelegator
   attr_reader :api_client
 
   def post_initialize(repo, api_client)
-    repo.commits = latest_commits(repo.path)
-    repo
+    repo.tap do |r|
+      r.commits = latest_commits(r.path)
+      r.stars = stars_count(r.path)
+    end
   end
 
   def latest_commits(repo_path, branch = 'master')
-    api_client.list_commits(repo_path, branch, max_commit_date).map do |api_response|
+    api_client.list_commits(repo_path, branch, oldest_commit_date).map do |api_response|
       Commit.build(
         api_response.sha,
         api_response.commit.author.name,
@@ -27,7 +29,11 @@ class GithubRepo < SimpleDelegator
     end
   end
 
-  def max_commit_date
+  def stars_count(repo_path)
+    api_client.stars_count(repo_path)
+  end
+
+  def oldest_commit_date
     Time.zone.now - 6.months
   end
 end

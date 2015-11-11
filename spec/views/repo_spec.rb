@@ -1,23 +1,29 @@
 require 'rails_helper'
 
 describe 'repository/show.html.erb', type: :view do
-  let(:repo) do
-    repo = Repository.from_owner_and_name('owner_name', 'repo_name')
-    repo.add_commit(commit)
-    repo
-  end
-
-  let(:commit) do
-    Commit.build('sha-12345', 'joe bloggs', time_days_ago(7), 'i fixed stuff')
-  end
-
+  let(:repo) {
+    double('Repository',
+      owner: 'owner_name',
+      name: 'repo_name',
+      path: 'owner_name/repo_name',
+      commits: [commit],
+      latest_commit: commit,
+      rating_descriptions: rating_descriptions,
+      rating: 1
+    )
+  }
+  let(:commit) {
+    Commit.build(
+      'sha-12345',
+      'joe bloggs', time_days_ago(7), 'i fixed stuff'
+    )
+  }
   let(:rating) { "X" }
-  let(:rating_klass) { double("Rater", description: "Hello world") }
+  let(:rating_descriptions) { ["Hello world"] }
 
   before do
     assign(:repo, repo)
     assign(:letter_rating, rating)
-    assign(:rating_klasses, [rating_klass])
 
     render
   end

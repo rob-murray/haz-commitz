@@ -1,28 +1,39 @@
-require_relative 'repo_rater'
+class CommitCountRater < FiveStar.base_rater
+  rating_weight 0.6
 
-class CommitCountRater < RepoRater.rating_klass
-
-  def self.description
-    "The number of commits in the past 6 months"
+  def description
+    "This project has #{number_of_commits_in_words} in the past 6 months"
   end
 
-  def rate(repo)
-    return min if repo.nil?
-
-    unless repo.commits.any?
-      return min
+  def rating
+    unless repo.present? && repo.commits.any?
+      return min_rating
     end
 
-    rating = case repo.commits.size
-             when 0..5 then max
-             when 6..10 then 8
-             when 11..15 then 6
-             when 16..25 then 4
-             when 26..36 then 2
-             when 37..50 then 1
-             else min
-             end
+    # The higher the number of commits, the higher the rating
+    #
+    case number_of_commits
+    when 0..5 then min_rating
+    when 6..10 then 1
+    when 11..15 then 2
+    when 16..25 then 4
+    when 26..36 then 6
+    when 37..50 then 8
+    else max_rating
+    end
+  end
 
-    rating
+  private
+
+  def number_of_commits
+    repo.commits.size
+  end
+
+  def repo
+    rateable
+  end
+
+  def number_of_commits_in_words
+    ActionController::Base.helpers.pluralize(number_of_commits, 'commit')
   end
 end

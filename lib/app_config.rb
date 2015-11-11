@@ -9,7 +9,6 @@ module AppConfig
     end
 
     def configure
-      @configuration ||= Configuration.new
       yield(configuration)
     end
 
@@ -22,7 +21,7 @@ module AppConfig
     attr_accessor :badge_version
 
     def initialize
-      @badge_version = "VERSION_002"
+      @badge_version = "VERSION_003"
     end
   end
 end
