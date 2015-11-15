@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rob-murray/haz-commitz.svg?branch=master)](https://travis-ci.org/rob-murray/haz-commitz)
 [![Code Climate](https://codeclimate.com/github/rob-murray/haz-commitz.png)](https://codeclimate.com/github/rob-murray/haz-commitz)
-[![Coverage Status](https://coveralls.io/repos/rob-murray/haz-commitz/badge.png)](https://coveralls.io/r/rob-murray/haz-commitz)
+[![Coverage Status](https://coveralls.io/repos/rob-murray/haz-commitz/badge.svg?branch=master&service=github)](https://coveralls.io/github/rob-murray/haz-commitz?branch=master)
 [![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
 
 
@@ -59,6 +59,7 @@ In the proof of concept version we currently use two factors:
 
 * A rating from the last commit date to `master`
 * The number of commits to `master` in the past six months
+* The number of stars the repository has received
 
 Very un-scientific rating based on this data but we would add more factors in future.
 
