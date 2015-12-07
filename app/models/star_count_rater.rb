@@ -6,7 +6,7 @@ class StarCountRater < FiveStar.base_rater
   end
 
   def rating
-    unless repo.present?
+    unless repository.present?
       return min_rating
     end
 
@@ -29,12 +29,12 @@ class StarCountRater < FiveStar.base_rater
 
   private
 
-  def repo
+  def repository
     rateable
   end
 
   def number_of_stars
-    repo.stars
+    repository.stars
   end
 
   def number_of_stars_in_words

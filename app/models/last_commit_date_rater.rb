@@ -6,7 +6,7 @@ class LastCommitDateRater < FiveStar.base_rater
   end
 
   def rating
-    unless repo.present? && last_commit_date.present? && last_commit_date.is_a?(Time)
+    unless repository.present? && last_commit_date.present? && last_commit_date.is_a?(Time)
       return min_rating
     end
 
@@ -25,12 +25,12 @@ class LastCommitDateRater < FiveStar.base_rater
 
   private
 
-  def repo
+  def repository
     rateable
   end
 
   def last_commit_date
-    repo.latest_commit_date
+    repository.latest_commit_date
   end
 
   def time_now

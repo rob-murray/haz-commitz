@@ -6,7 +6,7 @@ class CommitCountRater < FiveStar.base_rater
   end
 
   def rating
-    unless repo.present? && repo.commits.any?
+    unless repository.present? && repository.commits.any?
       return min_rating
     end
 
@@ -25,12 +25,12 @@ class CommitCountRater < FiveStar.base_rater
 
   private
 
-  def number_of_commits
-    repo.commits.size
+  def repository
+    rateable
   end
 
-  def repo
-    rateable
+  def number_of_commits
+    repository.commits.size
   end
 
   def number_of_commits_in_words
