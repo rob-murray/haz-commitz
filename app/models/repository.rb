@@ -1,6 +1,6 @@
 class Repository
-  include Virtus.model
   include FiveStar.rateable
+  include Virtus.model
 
   rate_with LastCommitDateRater, CommitCountRater, StarCountRater
 
