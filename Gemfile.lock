@@ -120,7 +120,7 @@ GEM
     multipart-post (2.0.0)
     nenv (0.2.0)
     netrc (0.11.0)
-    nokogiri (1.6.7)
+    nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
@@ -181,7 +181,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rollbar (2.6.3)
+    rollbar (2.7.1)
       multi_json
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -222,7 +222,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
-    spring (1.5.0)
+    spring (1.6.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (2.12.4)
@@ -293,4 +293,4 @@ DEPENDENCIES
   virtus
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
