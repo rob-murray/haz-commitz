@@ -2,17 +2,17 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
-gem 'rails', '4.1.13'
+gem 'rails', '4.1.14'
 
 # No DB but just stick with AR and pg for now
 gem 'pg'
 
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 
 gem 'puma'
 gem 'rollbar'
