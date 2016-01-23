@@ -4,14 +4,6 @@ describe CommitCountRater do
   subject { CommitCountRater.new(repo) }
 
   describe '#rating' do
-    context 'invalid repo' do
-      let(:repo) { nil }
-
-      it 'should rate minimum value' do
-        expect(subject.rating).to eq(0)
-      end
-    end
-
     context 'repo with no commits' do
       let(:repo) do
         Repository.from_owner_and_name('joe-bloggs', 'invalid-repo')

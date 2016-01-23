@@ -74,7 +74,7 @@ GEM
     faraday-http-cache (1.2.2)
       faraday (~> 0.8)
     ffi (1.9.10)
-    five-star (0.1.1)
+    five-star (1.0.0)
     formatador (0.2.5)
     guard (2.13.0)
       formatador (>= 0.2.4)

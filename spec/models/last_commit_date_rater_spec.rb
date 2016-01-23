@@ -4,14 +4,6 @@ describe LastCommitDateRater do
   subject { described_class.new(repo) }
 
   describe '#rating' do
-    context 'invalid repo' do
-      let(:repo) { nil }
-
-      it 'should rate minimum value' do
-        expect(subject.rating).to eq(0)
-      end
-    end
-
     context 'repo with invalid date' do
       let(:commit) { Commit.build('foo', 'joe bloggs', 'invalid date', '') }
       let(:repo) do
@@ -34,7 +26,7 @@ describe LastCommitDateRater do
       end
 
       it 'should rate minimum value' do
-        expect(subject.rating).to eq(0)
+        expect(subject.rating).to eq(0.0)
       end
     end
 
