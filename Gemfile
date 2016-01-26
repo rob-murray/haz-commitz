@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
-gem 'rails', '4.1.14'
+gem 'rails', '4.1.14.1'
 
 # No DB but just stick with AR and pg for now
 gem 'pg'
