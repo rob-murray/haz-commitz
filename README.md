@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/rob-murray/haz-commitz.svg?branch=master)](https://travis-ci.org/rob-murray/haz-commitz)
 [![Code Climate](https://codeclimate.com/github/rob-murray/haz-commitz.png)](https://codeclimate.com/github/rob-murray/haz-commitz)
 [![Coverage Status](https://coveralls.io/repos/rob-murray/haz-commitz/badge.svg?branch=master&service=github)](https://coveralls.io/github/rob-murray/haz-commitz?branch=master)
-[![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz.svg)](http://haz-commitz.herokuapp.com/repos/rob-murray/haz-commitz)
+
 
 
 ### A GitHub badge service displaying repository rating
@@ -11,10 +11,6 @@
 Having trouble deciding whether to use an open source project? Frustrated at having to check whether the project has had any commits recently, is it still maintained? Should you use it?
 
 If the repository were to use a `Haz Commitz` badge then just a simple glance at the badge will give an indication whether the project is actively maintained based on the rating.
-
-> Experitmental proof of concept project - may get trashed at any point.
-
-[Check it out now](http://haz-commitz.herokuapp.com)
 
 
 ## Usage
@@ -26,22 +22,22 @@ Simply just add a `Haz Commitz` badge to your repository README, we take care of
 #### Markdown
 
 ```markdown
-[![Haz Commitz Status](http://haz-commitz.herokuapp.com/repos/{owner}/{repository}.svg)](http://haz-commitz.herokuapp.com/repos/{owner}/{repository})
+[![Haz Commitz Status](https://{host}/repos/{owner}/{repository}.svg)](https://{host}/repos/{owner}/{repository})
 ```
 
 #### RDOC
 
 ```
-{<img src="http://haz-commitz.herokuapp.com/repos/{owner}/{repository}.svg" alt="Haz Commitz Status" />}[http://haz-commitz.herokuapp.com/repos/{owner}/{repository}]
+{<img src="https://{host}/repos/{owner}/{repository}.svg" alt="Haz Commitz Status" />}[https://{host}/repos/{owner}/{repository}]
 ```
 
 #### HTML
 
 ```
-<img src="http://haz-commitz.herokuapp.com/repos/{owner}/{repository}.svg" alt="Haz Commitz Status" />
+<img src="https://{host}/repos/{owner}/{repository}.svg" alt="Haz Commitz Status" />
 ```
 
-Access your repository stats via a URL like `http://haz-commitz.herokuapp.com/repos/{owner}/{repository}`.
+Access your repository stats via a URL like `https://{host}/repos/{owner}/{repository}`.
 
 
 ### Project user
